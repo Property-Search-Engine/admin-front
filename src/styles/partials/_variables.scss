@@ -1,0 +1,38 @@
+$primary-orange: rgba(239, 153, 84, 1);
+$primary-blue: rgba(83, 187, 232, 1);
+
+//search bar input background
+$searchBar-grey: rgba(242, 242, 246, 1);
+
+//borders
+$primary-grey: rgba(238, 238, 238, 1);
+
+//Results titles
+$text-grey: rgba(128, 128, 128, 1);
+
+//Properties
+$dark-text-properties: rgba(12, 35, 52, 1);
+$light-text-properties: rgba(54, 75, 87, 1);
+
+//Side Bar Icons
+$sideBar-black: rgba(12, 35, 52, 1);
+
+//Delete, Sold icons
+$icons: rgba(120, 134, 144, 1);
+
+//Filter Properties
+$filter-label: rgba(24, 37, 53, 1);
+$input-borders: rgba(207, 212, 217, 1);
+$input-placeholders: rgba(119, 134, 143, 1);
+
+//size for devices
+$breakpoints: (
+  "phone": 400px,
+  "phone-wide": 480px,
+  "phablet": 560px,
+  "tablet-small": 640px,
+  "tablet": 768px,
+  "tablet-wide": 1024px,
+  "desktop": 1248px,
+  "desktop-wide": 1440px,
+);
