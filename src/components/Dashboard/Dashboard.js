@@ -2,21 +2,21 @@ import React from "react";
 import {Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { withRouter } from "react-router";
 import Sidebar from "../common/Sidebar/Sidebar";
+import Header from "../common/Header/Header"; 
 
 export default function Dashboard (props) {
     return (
-        <>
-         <Container fluid>
-                <Row>
-                    <Col xs={2} id="sidebar-wrapper">      
+        <main className="d-flex flex mainContainer">
+       
+              
+                         
                       <Sidebar active="dashboard"/>
-                    </Col>
-                    <Col  xs={10} id="page-content-wrapper">
-                        this is a test
-                    </Col> 
-                </Row>
-
-            </Container>
-        </>
+    
+                        <div>
+                            <Header/>
+                        </div>
+            
+          
+        </main>
         );
   };
