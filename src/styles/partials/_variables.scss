@@ -36,3 +36,9 @@ $breakpoints: (
   "desktop": 1248px,
   "desktop-wide": 1440px,
 );
+
+// Bootstrap customize 
+$theme-colors: (
+    "primary": $primary-orange,
+    "danger": teal
+);
