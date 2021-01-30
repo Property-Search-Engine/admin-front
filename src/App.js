@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import CardContainer from "./components/CardContainer";
+import ListContainer from "../src/components/ListingContainer/ListContainer";
 
 import ROUTES from "./utils/routes";
 
@@ -13,7 +14,9 @@ function App() {
        <div>Property details</div>
       </Route>
       <Route path={ROUTES.LISTING}>
-       <div>Listing</div>
+       <div>
+         <ListContainer />
+       </div>
       </Route>
       <Route path={ROUTES.SETTINGS}>
        <div>Settings</div>
