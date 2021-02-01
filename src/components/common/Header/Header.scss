@@ -1,0 +1,16 @@
+nav {
+  &.mainNav {
+    height: 10vh;
+  }
+  form {
+    &.fullWidth {
+      width: 50%;
+    }
+
+    button {
+      img {
+        width: 20px;
+      }
+    }
+  }
+}
