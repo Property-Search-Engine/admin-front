@@ -24,8 +24,6 @@ function App() {
       <Route path={ROUTES.DASHBOARD}>
        <div>Dashboard
          <CardContainer/>
-
-        
        </div>
       </Route>
     </Switch>

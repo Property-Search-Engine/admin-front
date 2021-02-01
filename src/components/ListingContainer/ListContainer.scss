@@ -125,21 +125,23 @@
     outline: none;
   }
   
-  .listingResult {
-    width: 90%;
-    margin: 10px auto;
-    font-weight: 400;
-    display: table;
-    font-family: $main-font;
-  }
+ 
   
   .spanResult {
-    width: 20%;
-    margin: 0px;
+    //width: 90%;
+   // margin: 10px auto;
     font-weight: 400;
+    display: table;
+    font-family: "Montserrat", sans-serif;
   }
   
   .managementButtons {
     float: right;
   }
-  
+  .manageList {
+    display: inline-block;
+    margin: 40px 68px 10px 68px;
+  }
+  .btn-addNew {
+    float: right;
+  }
