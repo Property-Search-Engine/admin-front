@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard/Dashboard"; 
-
+import Dashboard from "./components/Dashboard/Dashboard";
+import Listing from "./components/Listing/Listing";
 import ROUTES from "./utils/routes";
 
 function App() {
@@ -10,16 +10,16 @@ function App() {
   return (
     <Switch>
       <Route path={ROUTES.HOME_DETAILS}>
-          <div>Property details</div>
+        <div>Property details</div>
       </Route>
       <Route path={ROUTES.LISTING}>
-          <div>Listing</div>
+        <Listing />
       </Route>
       <Route path={ROUTES.SETTINGS}>
-          <div>Settings</div>
+        <div>Settings</div>
       </Route>
       <Route path={ROUTES.DASHBOARD}>
-         <Dashboard/>
+        <Dashboard />
       </Route>
     </Switch>
   );
