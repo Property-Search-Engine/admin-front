@@ -1,0 +1,20 @@
+.mainNav {
+  height: 10vh;
+  width: 100%;
+}
+
+.fullWidth {
+  width: 35%;
+  padding-left: 20px;
+}
+
+input[type="text"] {
+  background-color: $searchBar-grey;
+  border: none;
+}
+
+button {
+  img {
+    width: 20px;
+  }
+}
