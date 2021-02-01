@@ -4,9 +4,11 @@ import {Table, Image} from "react-bootstrap";
 import ListingRowContainer from "../ListingRowContainer/ListingRowContainer.js";
 import Result from "../Result/Results";
 import ModalForm from "../../common/ModalForm/ModalForm.js";
+import Thead from "../Thead/Thead.js";
 
 export default function ListContainer(props) {
   const[modalOpen, setModalOpen] = useState(false);
+  const headerTexts = ['Address', 'Price', 'Characteristics', 'Add as sold', 'Remove'];
 
   function handleToggleModalOpen (){
     modalOpen ? setModalOpen(false) : setModalOpen(true);
@@ -34,31 +36,22 @@ export default function ListContainer(props) {
         <Table responsive>
              <thead>
              <tr>
-               {whichView === "listing" &&  <th>
-                 <p className="h-img">Image</p>
-               </th>}
-               <th>
-                 <p>Address</p>
-               </th>
-               <th>
-                 <p>Price</p>
-               </th>
-               <th>
-                 <p>Characteristics</p>
-               </th>
-               <th>
-                 <p>Add as sold</p>
-               </th>
-               <th>
-                 <p>Remove</p>
-               </th>
+               {
+               whichView === "listing" &&  
+                <th>
+                  <p className="h-img">Image</p>
+                </th>
+               }
+
+               {headerTexts.map(ht => <Thead headerText={ht} /> )}
              </tr>
            </thead>
            <tbody>
-           <ListingRowContainer whichView={whichView}/>
-           <ListingRowContainer whichView={whichView}/>
-           <ListingRowContainer whichView={whichView}/>
-           <ListingRowContainer whichView={whichView}/>
+             {/* {objetoQueDevuelva.map(obj => <ListingRowContainer whichView={whichView} property={obj}/> )} */}
+              <ListingRowContainer whichView={whichView}/>
+              <ListingRowContainer whichView={whichView}/>
+              <ListingRowContainer whichView={whichView}/>
+              <ListingRowContainer whichView={whichView}/>
          </tbody>
         </Table>
       </div>
