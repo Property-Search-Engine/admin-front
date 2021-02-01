@@ -1,0 +1,17 @@
+.modalOverlay{
+    width: 100vw;
+    height: 100vh;
+    position:fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(54, 75, 87, 0.5);
+    opacity:1;
+    padding: 3rem 20%;
+    overflow-y: auto;
+    transition: opacity 0.3s ease-in-out; 
+    z-index: 1000;
+}
+
+.modalHidden{
+    display: none;
+}
