@@ -2,7 +2,7 @@ import React from 'react';
 import {Image } from "react-bootstrap";
 
 function NumberInput(props) {
-    const {labelContent, inputName} = props;
+    const {labelContent, inputName, value} = props;
     return (
         <div className="input-container-number">
             {labelContent && 
@@ -10,7 +10,7 @@ function NumberInput(props) {
                     {labelContent.type === "image" ? <Image src={labelContent.content} className="form-icon-label number" /> : labelContent.content}
                 </label>
             }
-            <input type="number" id={inputName} name={inputName} step="1" placeholder="1" />
+            <input type="number" id={inputName} name={inputName} step="1" placeholder="1" value={value} />
         </div>
     )
 }

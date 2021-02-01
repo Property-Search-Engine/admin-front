@@ -2,7 +2,7 @@ import React from "react";
 import { Image } from "react-bootstrap";
 
 function RadioInputs(props) {
-  const { labelText, labelImgSrc, inputsName, options } = props;
+  const { labelText, labelImgSrc, inputsName, options, values } = props;
   return (
     <div>
       {labelText && (
@@ -20,6 +20,7 @@ function RadioInputs(props) {
               type="checkbox"
               name={inputsName}
               value={o.toLowerCase()}
+              checked={values ? values.some(value => value === o.toLowerCase()) : false}
             />
             <span className="checkmark"></span>
             <span>&nbsp; {o}</span>
