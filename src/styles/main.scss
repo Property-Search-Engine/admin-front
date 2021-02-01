@@ -2,4 +2,6 @@
 @import "./partials/fonts";
 @import "./partials/mixings";
 @import "~bootstrap/scss/bootstrap";
-@import "../components/common/sidebar/Sidebar.scss";
+@import "../components/common/Sidebar/Sidebar.scss";
+@import "../components/Dashboard/Dashboard.scss";
+@import "../components/common/Header/Header.scss";
