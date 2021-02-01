@@ -11,7 +11,7 @@ import {svgPath} from "../../../utils/helpers";
 import {fadeOut} from "../../../utils/helpers";
 
 function ModalForm(props) {
-  const { isModalFormOpen, handleModalToggle, formData } = props;
+  const { isModalFormOpen, handleModalToggle, formData = {} } = props;
   
   const handleSubmit = e => {
     e.preventDefault();
@@ -159,7 +159,7 @@ function ModalForm(props) {
           </div>
          
         </Form>
-        </Modal>
+      </Modal>
   );
 }
 

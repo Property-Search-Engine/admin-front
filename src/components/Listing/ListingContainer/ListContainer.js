@@ -1,11 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 
-import Table from "react-bootstrap/Table";
+import {Table, Image} from "react-bootstrap";
 import ListingRowContainer from "../ListingRowContainer/ListingRowContainer.js";
 import Result from "../Result/Results";
-import ListAddNew from "../ListingAddNew/ListAddNew";
+import ModalForm from "../../common/ModalForm/ModalForm.js";
 
 export default function ListContainer() {
+  const[modalOpen, setModalOpen] = useState(false);
+
+  function handleToggleModalOpen (){
+    modalOpen ? setModalOpen(false) : setModalOpen(true);
+  }
+  
   return (
     <div>
       <div className="manageList">
@@ -13,7 +19,10 @@ export default function ListContainer() {
       
       </div>
       <div className="manageList btn-addNew">
-        <ListAddNew />
+        <a className="listingAddNew" onClick={handleToggleModalOpen}>
+          <Image className="mr-2" src="/assets/icons/addNew.svg" width="15px" rounded />
+          Add New
+        </a>
       </div>
       <div className="listContainer">
         <Table responsive>
@@ -48,6 +57,7 @@ export default function ListContainer() {
           </tbody>
         </Table>
       </div>
+      <ModalForm isModalFormOpen={modalOpen} handleModalToggle={handleToggleModalOpen}/>
     </div>
   );
 }

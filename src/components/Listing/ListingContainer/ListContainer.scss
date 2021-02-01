@@ -145,3 +145,19 @@
   .btn-addNew {
     float: right;
   }
+
+  .listingAddNew {
+    // width: 90%;
+     //margin: 10px auto;
+     font-weight: 400;
+     display: table;
+     font-family: "Montserrat", sans-serif;
+     color: $primary-blue;
+     margin-right: 10px;
+     cursor: pointer;
+     img {
+         &:hover{
+             color: $primary-blue;
+         }
+     }
+ }

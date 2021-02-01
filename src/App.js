@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
-
-import ListContainer from "../src/components/ListingContainer/ListContainer";
-
+import Listing from "./components/Listing/Listing";
 import ROUTES from "./utils/routes";
 
 function App() {
@@ -15,7 +13,7 @@ function App() {
         <div>Property details</div>
       </Route>
       <Route path={ROUTES.LISTING}>
-        <ListContainer />
+        <Listing />
       </Route>
       <Route path={ROUTES.SETTINGS}>
         <div>Settings</div>
