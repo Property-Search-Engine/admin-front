@@ -1,0 +1,30 @@
+.form-icon-label{
+    width: 1.8rem;
+    padding-bottom: 0.2rem;
+    margin-right: 0.5rem ;
+    &.number{
+        width: 2rem;
+        padding-bottom: 0;
+    }
+}
+.modal-form-column{
+    width: 50%;
+    padding: 2rem;
+}
+#property-form{
+    @include border(1px, solid, $text-grey, 4px);
+    background-color: white;
+    overflow-y: auto;
+    max-height: 100%;
+    position: relative;
+
+}
+.modal-form-title{
+    padding: 1.5rem;
+    margin: 0;
+}
+.close-modal-button{
+    position:absolute;
+    right: 25px;
+    top:25px;
+}
