@@ -7,10 +7,21 @@ import CheckInput from "../Inputs/CheckInput";
 import DateInput from "../Inputs/DateInput";
 import NumberInput from "../Inputs/NumberInput";
 
-import { svgPath } from "../../../utils/helpers";
-import { fadeOut } from "../../../utils/helpers";
+import { svgPath, fadeOut, toCamelCase } from "../../../utils/helpers";
 
 function ModalForm(props) {
+  const typeOptions = ["Apartment", "Duplex", "House", "Penthouse"];
+  const conditionOptions = ["New House", "Good condition", "Needs renovation"];
+  const filterOptions = [
+    "Pets Allowed",
+    "Lift",
+    "Garden",
+    "Air Conditioning",
+    "Pool",
+    "Terrace",
+  ];
+  const statusOptions = ["Available", "Sold"];
+  const getDefaultOptions = (options) => options[0].toLowerCase();
   const {
     isModalFormOpen,
     handleModalToggle,
@@ -20,14 +31,14 @@ function ModalForm(props) {
       city: "",
       state: "",
       country: "",
-      status: "",
-      type: "",
-      condition: "",
-      equipment: "",
+      status: getDefaultOptions(statusOptions),
+      type: getDefaultOptions(typeOptions),
+      condition: toCamelCase(conditionOptions[0]),
+      equipment: "full",
       price: "",
-      bedroom: "",
-      bath: "",
-      m2: "",
+      bedroom: 1,
+      bath: 1,
+      m2: 1,
       date: "",
       filters: [],
       description: "",
@@ -123,7 +134,7 @@ function ModalForm(props) {
               value={country}
             />
             <RadioInputs
-              options={["Available", "Sold"]}
+              options={statusOptions}
               inputsName="status"
               labelText="Status"
               labelImgSrc={svgPath("tagblue")}
@@ -131,7 +142,7 @@ function ModalForm(props) {
               value={status}
             />
             <RadioInputs
-              options={["Apartment", "Duplex", "House", "Penthouse"]}
+              options={typeOptions}
               inputsName="type"
               labelText="Type of property"
               labelImgSrc={svgPath("tagblue")}
@@ -139,7 +150,7 @@ function ModalForm(props) {
               value={type}
             />
             <RadioInputs
-              options={["New House", "Good condition", "Needs renovation"]}
+              options={conditionOptions}
               inputsName="condition"
               labelText="Condition of Property"
               labelImgSrc={svgPath("tagblue")}
@@ -159,19 +170,19 @@ function ModalForm(props) {
               >
                 <option
                   value="full"
-                  selected={equipment === "full" ? true : false}
+                  defaultValue={equipment === "full" ? true : false}
                 >
                   Fully furnished
                 </option>
                 <option
                   value="partial"
-                  selected={equipment === "partial" ? true : false}
+                  defaultValue={equipment === "partial" ? true : false}
                 >
                   Partial furnished
                 </option>
                 <option
                   value="none"
-                  selected={equipment === "none" ? true : false}
+                  defaultValue={equipment === "none" ? true : false}
                 >
                   Not furnished
                 </option>
@@ -225,14 +236,7 @@ function ModalForm(props) {
               value={date}
             />
             <CheckInput
-              options={[
-                "Pets Allowed",
-                "Lift",
-                "Garden",
-                "Air Conditioning",
-                "Pool",
-                "Terrace",
-              ]}
+              options={filterOptions}
               labelText="More Filters"
               inputsName="filters"
               labelImgSrc={svgPath("filter")}
