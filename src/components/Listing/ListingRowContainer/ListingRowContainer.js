@@ -1,7 +1,8 @@
 import React from "react";
 
 import Image from "react-bootstrap/Image";
-import Form from "react-bootstrap/Form";
+import Form from "react-bootstrap/Form"; 
+import { svgPath } from "../../../utils/helpers";
 
 export default function ListingRowContainer(props) {
 
@@ -31,7 +32,8 @@ const { whichView } = props;
           <span>1</span>
         </span>
         <span className="iconSurface">
-          <Form.Check type="checkbox" label="62" />m<sup>2</sup>
+          <Image className="listing-icons" src={svgPath("m2")} />
+          <span>62m<sup>2</sup></span>
         </span>
       </td>
 
