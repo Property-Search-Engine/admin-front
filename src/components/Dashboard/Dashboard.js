@@ -10,7 +10,6 @@ export default function Dashboard (props) {
             <Sidebar active="dashboard"/>
             <div className="mainContainer">
                 <Header/>
-                <ImageCarousel/>
             </div>
         </main>
         );
