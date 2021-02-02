@@ -3,30 +3,30 @@ import React from "react";
 import Image from "react-bootstrap/Image";
 import Form from "react-bootstrap/Form";
 
-export default function ListingRowContainer() {
+export default function ListingRowContainer(props) {
+
+const { whichView } = props; 
+
   return (
     <tr>
-      {Array.from({ length: 6 })}
-      <td>
-        <button className="btn listImg">
-          <Image src="/assets/images/house1.jpg" width="125px" rounded />
-        </button>
-      </td>
 
-      <td className="listing-street">
+      {whichView === "listing" && <td>
+          <Image className="firstCellMargin" src="/assets/images/house1.jpg" width="125px" id="btn-img" rounded />
+      </td>}
+      <td className={whichView === "listing" ? "" : "firstCellMargin"}>
         <p className="boldSpan">4092 Morgan Street</p>
         <span className="notBoldSpan">Sabadell, BCN</span>
       </td>
-      <td className="listing-price">
+      <td>
         <p>$457,000</p>
       </td>
 
       <td className="characteristics">
-        <span className="iconBed">
+        <span>
           <Image className="listing-icons" src="/assets/icons/bed.svg" />
           <span>2</span>
         </span>
-        <span className="iconBath">
+        <span>
           <Image className="listing-icons" src="/assets/icons/bath.svg" />
           <span>1</span>
         </span>

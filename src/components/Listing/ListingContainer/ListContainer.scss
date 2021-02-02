@@ -1,163 +1,170 @@
 .table {
-    //width: 135%!important;
-    margin-bottom: 1rem;
-    color: #212529;
-  }
-  
-  tr th {
-    font-weight: 400;
-    font-size: 14px;
-    color: $text-grey;
-  }
-  
-  th p {
-    margin-top: 0.5rem;
-    //margin-left: 25px;
-    margin-bottom: 5px;
-  }
-  
-  p {
-    margin-top: 0;
-    margin-bottom: 0rem;
-  }
-  
-  sup {
-    top: 0px;
-  }
-  
-  .listImg {
-      margin: 0px -70px 3px 70px;
-  }
-  
-  .h-img {
-      margin-left: 85px;
-  }
-  
-  .table thead th {
-    /* vertical-align: bottom; */
-    border-bottom: 0px solid white !important;
-  }
-  
-  .table th,
-  .table td {
-    padding: 0px !important;
-    vertical-align: inherit;
-    border-top: 1px solid white;
-  }
-  
-  .listContainer {
-    margin: auto;
-    width: 90%;
-    display: flex;
-    font-family: $main-font;
-    border: 1px solid lightgrey;
-  }
-  
-  .boldSpan {
-    font-weight: 600;
-    font-size: 14px;
-    margin-top: 15px;
-  }
-  
-  .notBoldSpan {
-    font-weight: 400;
-    font-size: 13px;
-    color: $text-grey;
-  }
-  
-  .listing-icons {
-    width: 20px;
-    margin: 5px;
-  }
-  .sold {
-      
-  }
-  
-  .listing-street span {
-    float: left;
-    //margin-left: 20px;
-  }
-  
-  .listing-price {
-    color: $primary-orange;
-  }
-  
-  span p {
-    line-height: 10px;
-  }
-  
-  .iconBed {
-    display: unset;
-    font-size: 13px;
-  }
-  
-  .iconBath {
-    display: inline;
-    font-size: 13px;
-  }
-  
-  .iconSurface {
-    display: inline-flex;
-    margin-left: 10px;
-    font-size: 13px;
-  }
-  
-  .characteristics {
-    color: $icons;
-  }
-  
-  .surface {
-    display: flex;
-  }
-  
-  .listing-chebox {
-    display: flex;
-  }
-  
-  .btn-list {
-    border: 0;
-    background-color: 0;
-    outline: none;
-  }
-  
-  .btn-list :focus {
-    border: none;
-    outline: none;
-  }
-  
- 
-  
-  .spanResult {
-    //width: 90%;
-   // margin: 10px auto;
-    font-weight: 400;
-    display: table;
-    font-family: "Montserrat", sans-serif;
-  }
-  
-  .managementButtons {
-    float: right;
-  }
-  .manageList {
-    display: inline-block;
-    margin: 40px 68px 10px 68px;
-  }
-  .btn-addNew {
-    float: right;
-  }
+  //width: 135%!important;
+  margin-bottom: 1rem;
+  color: #212529;
+}
 
-  .listingAddNew {
-    // width: 90%;
-     //margin: 10px auto;
-     font-weight: 400;
-     display: table;
-     font-family: "Montserrat", sans-serif;
-     color: $primary-blue;
-     margin-right: 10px;
-     cursor: pointer;
-     img {
-         &:hover{
-             color: $primary-blue;
-         }
-     }
- }
+tr th {
+  font-weight: 400;
+  font-size: 14px;
+  color: $text-grey;
+}
+
+th p {
+  margin-top: 0.5rem;
+  //margin-left: 25px;
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0rem;
+}
+
+sup {
+  top: 0px;
+}
+
+.firstCellMargin {
+  margin: 0 0 3px 70px;
+}
+
+.h-img {
+  margin-left: 85px;
+}
+
+.table thead th {
+  /* vertical-align: bottom; */
+  border-bottom: 0px solid white !important;
+}
+
+.table th,
+.table td {
+  padding: 0px !important;
+  vertical-align: inherit;
+  border-top: 1px solid white;
+}
+
+.listContainer {
+  margin: auto;
+  width: 90%;
+  display: flex;
+  font-family: $main-font;
+  border: 1px solid lightgrey;
+}
+
+.boldSpan {
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.notBoldSpan {
+  font-weight: 400;
+  font-size: 13px;
+  color: $text-grey;
+}
+
+.listing-icons {
+  width: 20px;
+  margin: 5px;
+}
+.sold {
+}
+
+.listing-street span {
+  float: left;
+  //margin-left: 20px;
+}
+
+.listing-price {
+  color: $primary-orange;
+}
+
+span p {
+  line-height: 10px;
+}
+
+.iconBed {
+  display: unset;
+  font-size: 13px;
+}
+
+.iconBath {
+  display: inline;
+  font-size: 13px;
+}
+
+.iconSurface {
+  display: inline-flex;
+  margin-left: 10px;
+  font-size: 13px;
+}
+
+.characteristics {
+  color: $icons;
+}
+
+.surface {
+  display: flex;
+}
+
+.listing-chebox {
+  display: flex;
+}
+
+.btn-list {
+  border: 0;
+  background-color: 0;
+  outline: none;
+}
+
+.btn-list :focus {
+  border: none;
+  outline: none;
+}
+
+.spanResult {
+  //width: 90%;
+  // margin: 10px auto;
+  font-weight: 400;
+  display: table;
+  font-family: "Montserrat", sans-serif;
+}
+
+.managementButtons {
+  float: right;
+}
+.manageList {
+  display: inline-block;
+  margin: 40px 68px 10px 68px;
+}
+.btn-addNew {
+  float: right;
+}
+
+.listingAddNew {
+  // width: 90%;
+  //margin: 10px auto;
+  font-weight: 400;
+  display: table;
+  font-family: "Montserrat", sans-serif;
+  color: $primary-blue;
+  margin-right: 10px;
+  cursor: pointer;
+  img {
+    &:hover {
+      color: $primary-blue;
+    }
+  }
+}
+
+#btn-img {
+  width: 90px;
+}
+
+.detailsContainer {
+  height: 20%;
+  width: 100%;
+  margin-bottom: 20px;
+}

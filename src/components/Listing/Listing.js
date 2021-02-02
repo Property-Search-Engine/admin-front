@@ -9,7 +9,7 @@ function Listing() {
         <Sidebar active="listing"/>
         <div className="mainContainer">
             <Header/>
-            <ListContainer /> 
+            <ListContainer whichView="listing"/> 
         </div>
     </main>
     )
