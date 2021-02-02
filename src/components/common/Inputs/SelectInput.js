@@ -19,11 +19,12 @@ function SelectInput(props) {
                 as="select"
                 custom
               >
-                  {Object.keys(options).map((opt, i) => 
-                    <option key={`select-${opt}-${i}`} value={value === opt ? true : false}>
+                  {Object.keys(options).map((opt, i) => {
+                      console.log(opt, value);
+                    return <option key={`select-${opt}-${i}`} value={opt} defaultValue={value === opt ? true : false}>
                         {options[opt]}
                     </option>
-                  )}
+                  })}
               </Form.Control>
             </Form.Group>
     )
