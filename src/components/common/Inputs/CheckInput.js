@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
 
+import { toCamelCase } from "../../../utils/helpers";
+
 function RadioInputs(props) {
-  const { labelText, labelImgSrc, inputsName, options, values } = props;
+  const {
+    labelText,
+    labelImgSrc,
+    inputsName,
+    options,
+    values,
+    onChange,
+  } = props;
+  
+  const [checked, setChecked] = useState([]);
+
+  useEffect(() => {
+    onChange(inputsName, checked);
+  }, [checked]);
+
+  const handleChange = (e) =>
+    checked.some((item) => item === e.target.value)
+      ? setChecked(checked.filter((item) => item !== e.target.value))
+      : setChecked([...checked, e.target.value]);
+
   return (
     <div>
       {labelText && (
@@ -13,14 +34,16 @@ function RadioInputs(props) {
           {labelText}
         </label>
       )}
-      <div className="inputsContainer">
+      <div className="inputsContainer" onChange={handleChange}>
         {options.map((o, i) => (
           <div key={`check-${inputsName}-${i}`} className="checkContainer">
             <input
               type="checkbox"
               name={inputsName}
-              value={o.toLowerCase()}
-              checked={values ? values.some(value => value === o.toLowerCase()) : false}
+              value={toCamelCase(o)}
+              defaultChecked={
+                values.some((value) => value === toCamelCase(o)) ? true : false
+              }
             />
             <span className="checkmark"></span>
             <span>&nbsp; {o}</span>

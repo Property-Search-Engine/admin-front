@@ -1,165 +1,258 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button, Image } from "react-bootstrap";
-import Modal from '../Modal/Modal';
+import Modal from "../Modal/Modal";
 import TextInput from "../Inputs/TextInput";
 import RadioInputs from "../Inputs/RadioInputs";
 import CheckInput from "../Inputs/CheckInput";
 import DateInput from "../Inputs/DateInput";
 import NumberInput from "../Inputs/NumberInput";
+import SelectInput from "../Inputs/SelectInput";
 
-import {svgPath} from "../../../utils/helpers";
-import {fadeOut} from "../../../utils/helpers";
+import { svgPath, fadeOut, toCamelCase } from "../../../utils/helpers";
 
 function ModalForm(props) {
-  const { isModalFormOpen, handleModalToggle, formData = {} } = props;
-  
-  const handleSubmit = e => {
+  const typeOptions = ["Apartment", "Duplex", "House", "Penthouse"];
+  const conditionOptions = ["New House", "Good condition", "Needs renovation"];
+  const filterOptions = [
+    "Pets Allowed",
+    "Lift",
+    "Garden",
+    "Air Conditioning",
+    "Pool",
+    "Terrace",
+  ];
+  const statusOptions = ["Available", "Sold"];
+  const equipmentOptions = {
+    full: 'Fully furnished',
+    partial: 'Partial furnished',
+    none: 'Not furnished'
+  }
+  const getDefaultOptions = (options) => options[0].toLowerCase();
+  const {
+    isModalFormOpen,
+    handleModalToggle,
+    comingFormData = {
+      street: "",
+      number: "",
+      city: "",
+      state: "",
+      country: "",
+      status: getDefaultOptions(statusOptions),
+      type: getDefaultOptions(typeOptions),
+      condition: toCamelCase(conditionOptions[0]),
+      equipment: 'full',
+      price: "",
+      bedroom: 1,
+      bath: 1,
+      m2: 1,
+      date: "",
+      filters: [],
+      description: "",
+    },
+  } = props;
+  const [formData, setFormData] = useState(comingFormData);
+  const {
+    street,
+    number,
+    city,
+    state,
+    country,
+    status,
+    type,
+    condition,
+    equipment,
+    price,
+    bedroom,
+    bath,
+    m2,
+    date,
+    filters,
+    description
+  } = formData;
+  const handleInputChange = (inputName, inputValue) => {
+    setFormData({ ...formData, [inputName]: inputValue });
+  };
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
-    //Fetch to endpoint 
-   
+
+    //Fetch to endpoint
+
     close();
     e.target.reset();
-  }
-  function close(){
+  };
+  function close() {
     const fadeOutTime = 300;
-    const fadeOutElement = document.querySelector('.modalOverlay');
+    const fadeOutElement = document.querySelector(".modalOverlay");
     fadeOut(fadeOutElement, fadeOutTime);
-    setTimeout(() => handleModalToggle() , fadeOutTime);
+    setTimeout(() => handleModalToggle(), fadeOutTime);
   }
   return (
-      <Modal isOpen={isModalFormOpen} handleModalToggle={handleModalToggle}>
-        <Form id="property-form"  onSubmit={handleSubmit}>
-          <Button variant="secondary" onClick={close} className="close-modal-button">X</Button>
-          <h2 className="modal-form-title">Add a new property to the system </h2>
-          <div className="d-flex">
+    <Modal isOpen={isModalFormOpen} handleModalToggle={handleModalToggle}>
+      <Form id="property-form" onSubmit={handleSubmit}>
+        <Button
+          variant="secondary"
+          onClick={close}
+          className="close-modal-button"
+        >
+          X
+        </Button>
+        <h2 className="modal-form-title">Add a new property to the system </h2>
+        <div className="d-flex">
           <div className="modal-form-column">
             <TextInput
               inputName="street"
               labelText="Street"
               placeholder="Property Street"
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.street || ''}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={street}
             />
             <TextInput
               inputName="number"
               labelText="Number"
               placeholder="Property Number"
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.number || ''}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={number}
             />
             <TextInput
               inputName="city"
               labelText="City"
               placeholder="Property City"
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.city || ''}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={city}
             />
             <TextInput
               inputName="state"
               labelText="State"
               placeholder="Property State"
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.state || ''}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={state}
             />
             <TextInput
               inputName="country"
               labelText="Country"
               placeholder="Property Country"
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.country || ''}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={country}
             />
-            <RadioInputs 
-              options={['Available', 'Sold']}
+            <RadioInputs
+              options={statusOptions}
               inputsName="status"
               labelText="Status"
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.status || ''}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={status}
             />
             <RadioInputs
-              options={['Apartment', 'Duplex', 'House', 'Penthouse']}
+              options={typeOptions}
               inputsName="type"
               labelText="Type of property"
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.type || ''}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={type}
             />
             <RadioInputs
-              options={['New House', 'Good condition', 'Needs renovation']}
+              options={conditionOptions}
               inputsName="condition"
               labelText="Condition of Property"
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.condition || ''}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={condition}
             />
-            <Form.Group controlId="equipment" size="sm">
-              <Form.Label>
-                <Image src={svgPath('tagblue')} className="form-icon-label" />
-                Furnished
-              </Form.Label>
-              <Form.Control name="equipment" as="select" custom>
-                <option value="full" selected={formData.equipment === 'full' ? true : false}>Fully furnished</option>
-                <option value="partial" selected={formData.equipment === 'partial' ? true : false}>Partial furnished</option>
-                <option value="none" selected={formData.equipment === 'none' ? true : false}>Not furnished</option>
-              </Form.Control>
-            </Form.Group>
+            <SelectInput
+              options={equipmentOptions}
+              inputName='equipment'
+              labelText= 'Equipment'
+              labelImgSrc= {svgPath('tagblue')}
+              onChange={handleInputChange}
+              value={equipment}
+            /> 
           </div>
           <div className="modal-form-column">
             <TextInput
               inputName="price"
               labelText="Price"
               placeholder="Property Price"
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.price || ''}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={price}
             />
-            <p className="m-0"><Image src={svgPath('tagblue')} className="form-icon-label mb-2" /> characteristics</p>
+            <p className="m-0">
+              <Image
+                src={svgPath("tagblue")}
+                className="form-icon-label mb-2"
+              />
+              characteristics
+            </p>
             <div className="input-container-number">
-              <NumberInput 
+              <NumberInput
                 inputName="bedroom"
-                labelContent={{type: 'image', content: svgPath('bed') }}
-                value={formData.bedroom || ''}
+                labelContent={{ type: "image", content: svgPath("bed") }}
+                onChange={handleInputChange}
+                value={bedroom}
               />
-               <NumberInput 
+              <NumberInput
                 inputName="bath"
-                labelContent={{type: 'image', content: svgPath('bath') }}
-                value={formData.bath || ''}
+                labelContent={{ type: "image", content: svgPath("bath") }}
+                onChange={handleInputChange}
+                value={bath}
               />
-              <NumberInput 
+              <NumberInput
                 inputName="m2"
-                labelContent={{type: 'image', content: svgPath('m2') }}
-                value={formData.m2 || ''}
+                labelContent={{ type: "image", content: svgPath("m2") }}
+                onChange={handleInputChange}
+                value={m2}
               />
             </div>
             <DateInput
               inputName="date"
               labelText="Publication date"
-              placeholder={new Date().toLocaleString('en-GB', { timeZone: 'UTC' })}
-              labelImgSrc={svgPath('tagblue')}
-              value={formData.date || ''}
+              placeholder={new Date().toLocaleString("en-GB", {
+                timeZone: "UTC",
+              })}
+              labelImgSrc={svgPath("tagblue")}
+              onChange={handleInputChange}
+              value={date}
             />
-            <CheckInput 
-             options={['Pets Allowed', 'Lift', 'Garden', 'Air conditioning', 'Pool', 'Terrace']}
-             labelText="More Filters"
-             inputsName="filters"
-             labelImgSrc={svgPath('filter')}
-             value={formData.filters || ''}
+            <CheckInput
+              options={filterOptions}
+              labelText="More Filters"
+              inputsName="filters"
+              labelImgSrc={svgPath("filter")}
+              onChange={handleInputChange}
+              values={filters}
             />
             <Form.Group controlId="description">
-              <Form.Label> <Image src={svgPath('tagblue')} className="form-icon-label" />Description</Form.Label>
-              <Form.Control as="textarea" rows={10} placeholder="Add here the description...  " value={formData.description || ''}/>
+              <Form.Label>
+                <Image src={svgPath("tagblue")} className="form-icon-label" />
+                Description
+              </Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={10}
+                onChange={(e) =>
+                  handleInputChange("description", e.target.value)
+                }
+                placeholder="Add here the description...  "
+                value={description}
+              />
             </Form.Group>
             <div className="d-flex">
-            <Button variant="primary" type="submit" className="mr-3">
-              Submit
-            </Button>
-            <Button variant="secondary" onClick={close}>
-              Cancel
-            </Button>
+              <Button variant="primary" type="submit" className="mr-3">
+                Submit
+              </Button>
+              <Button variant="secondary" onClick={close}>
+                Cancel
+              </Button>
             </div>
-            
           </div>
-          </div>
-         
-        </Form>
-      </Modal>
+        </div>
+      </Form>
+    </Modal>
   );
 }
 
