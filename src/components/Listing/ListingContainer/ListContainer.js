@@ -17,7 +17,7 @@ export default function ListContainer(props) {
   const { whichView } = props
   
   return (
-    <div>
+    <div className="detailsContainer">
 
       {whichView === "listing" &&  <div className="manageList">
         <Result />

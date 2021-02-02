@@ -1,3 +1,8 @@
-.carousel-container {
-  width: 100%;
+.listing-container {
+  height: 90vh;
+  @include flex(space-around, center, column);
+}
+.carousel-slider {
+  width: 640px;
+  height: 426px;
 }
