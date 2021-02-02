@@ -6,6 +6,7 @@ import RadioInputs from "../Inputs/RadioInputs";
 import CheckInput from "../Inputs/CheckInput";
 import DateInput from "../Inputs/DateInput";
 import NumberInput from "../Inputs/NumberInput";
+import SelectInput from "../Inputs/SelectInput";
 
 import { svgPath, fadeOut, toCamelCase } from "../../../utils/helpers";
 
@@ -21,6 +22,11 @@ function ModalForm(props) {
     "Terrace",
   ];
   const statusOptions = ["Available", "Sold"];
+  const equipmentOptions = {
+    full: 'Fully furnished',
+    partial: 'Partial furnished',
+    none: 'Not furnished'
+  }
   const getDefaultOptions = (options) => options[0].toLowerCase();
   const {
     isModalFormOpen,
@@ -34,7 +40,7 @@ function ModalForm(props) {
       status: getDefaultOptions(statusOptions),
       type: getDefaultOptions(typeOptions),
       condition: toCamelCase(conditionOptions[0]),
-      equipment: "full",
+      equipment: 'full',
       price: "",
       bedroom: 1,
       bath: 1,
@@ -157,37 +163,14 @@ function ModalForm(props) {
               onChange={handleInputChange}
               value={condition}
             />
-            <Form.Group controlId="equipment" size="sm">
-              <Form.Label>
-                <Image src={svgPath("tagblue")} className="form-icon-label" />
-                Furnished
-              </Form.Label>
-              <Form.Control
-                name="equipment"
-                onChange={(e) => handleInputChange("equipment", e.target.value)}
-                as="select"
-                custom
-              >
-                <option
-                  value="full"
-                  defaultValue={equipment === "full" ? true : false}
-                >
-                  Fully furnished
-                </option>
-                <option
-                  value="partial"
-                  defaultValue={equipment === "partial" ? true : false}
-                >
-                  Partial furnished
-                </option>
-                <option
-                  value="none"
-                  defaultValue={equipment === "none" ? true : false}
-                >
-                  Not furnished
-                </option>
-              </Form.Control>
-            </Form.Group>
+            <SelectInput
+              options={equipmentOptions}
+              inputName='equipment'
+              labelText= 'Equipment'
+              labelImgSrc= {svgPath('tagblue')}
+              onChange={handleInputChange}
+              value={equipment}
+            /> 
           </div>
           <div className="modal-form-column">
             <TextInput
