@@ -19,8 +19,8 @@ function SelectInput(props) {
                 as="select"
                 custom
               >
-                  {Object.keys(options).map(opt => 
-                    <option value={opt} selected={value === opt ? true : false}>
+                  {Object.keys(options).map((opt, i) => 
+                    <option key={`select-${opt}-${i}`} value={value === opt ? true : false}>
                         {options[opt]}
                     </option>
                   )}
