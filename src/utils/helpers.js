@@ -36,3 +36,13 @@ export function toCamelCase(str){
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }).join('');
 }
+
+export function capitalise(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1); 
+}
+
+export function camelCaseStringToCapitalizeString(str) {
+
+  const capitaliseString = capitalise(str); 
+  return capitaliseString.replace(/([A-Z])/g, " $1"); 
+}

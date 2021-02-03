@@ -6,34 +6,42 @@ import { svgPath } from "../../../utils/helpers";
 
 export default function ListingRowContainer(props) {
 
-const { whichView } = props; 
+  const { whichView, property} = props; 
+
+
+  function handleClick(e) {
+    e.preventDefault(); 
+    //window.location.href = '/listing/' + property._id ;
+    // setCurrentProperty(property);
+  }
+  
 
   return (
-    <tr>
+    <tr key={property._id} onClick={handleClick}>
 
       {whichView === "listing" && <td>
-          <Image className="firstCellMargin" src="/assets/images/house1.jpg" width="125px" id="btn-img" rounded />
+          <Image className="firstCellMargin" src={ property.images[0]} width="125px" id="btn-img" rounded />
       </td>}
       <td className={whichView === "listing" ? "" : "firstCellMargin"}>
-        <p className="boldSpan">4092 Morgan Street</p>
-        <span className="notBoldSpan">Sabadell, BCN</span>
+        <p className="boldSpan">{property.address.street}</p>
+        <span className="notBoldSpan">{property.address.city}</span>
       </td>
       <td>
-        <p>$457,000</p>
+        <p>{property.price}</p>
       </td>
 
       <td className="characteristics">
         <span>
-          <Image className="listing-icons" src="/assets/icons/bed.svg" />
-          <span>2</span>
+          <Image className="listing-icons" src={svgPath('bed')} />
+          <span>{property.bedRooms}</span>
         </span>
         <span>
-          <Image className="listing-icons" src="/assets/icons/bath.svg" />
-          <span>1</span>
+          <Image className="listing-icons" src={svgPath('bath')}/>
+          <span>{property.bathRooms}</span>
         </span>
         <span className="iconSurface">
           <Image className="listing-icons" src={svgPath("m2")} />
-          <span>62m<sup>2</sup></span>
+          <span>{property.surface}m<sup>2</sup></span>
         </span>
       </td>
 
@@ -41,7 +49,7 @@ const { whichView } = props;
         <button className="btn list">
           <Image
             className="listing-icons sold"
-            src="/assets/icons/sold.svg"
+            src={svgPath(property.sold ? 'sold-active': 'sold')}
             rounded
           />
         </button>
@@ -50,7 +58,7 @@ const { whichView } = props;
         <button className="btn list">
           <Image
             className="listing-icons"
-            src="/assets/icons/delete.svg"
+            src={svgPath("delete")}
             rounded
           />
         </button>
