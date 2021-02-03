@@ -3,7 +3,7 @@ const ROUTES = {
     LOGIN: "/login",
     SIGNUP: "/sign-up",
     LISTING: "/listing",
-    HOME_DETAILS: "/listing/:id",
+    PROPERTY_DETAILS: "/listing/:id",
     SETTINGS: "/settings",
   };
   
