@@ -44,6 +44,8 @@ const propertyEx = {
     filters: ["petsAllowed", "AirConditioning", "terrace"],
     images: [
       "https://geekculture.co/wp-content/uploads/2019/12/Pickle-Rick-2.jpeg",
+      "https://geekculture.co/wp-content/uploads/2019/12/Pickle-Rick-3.jpeg", 
+      "https://geekculture.co/wp-content/uploads/2019/12/Pickle-Rick-1.jpeg"
     ],
     sold: true,
     kind: "Home",
@@ -82,7 +84,7 @@ export default function PropertyDetails(props) {
                 <ListContainer whichView="details" properties={[currentProperty]} />
                 <div className="d-flex flex-row px-5 mt-5 justify-content-center">
                         <ExtraPropertyDetails property={currentProperty}/>
-                        <ImageCarousel/>
+                        <ImageCarousel property={currentProperty}/>
                 </div>
             </div>
         </main>
