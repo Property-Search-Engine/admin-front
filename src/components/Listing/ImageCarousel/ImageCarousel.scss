@@ -6,11 +6,18 @@
 .carousel-slider {
   width: 640px;
   height: 426px;
+}
 
-  .carousel.slide > div > div.carousel-image.active.carousel-item > img {
-    width: 640px;
-    height: 426px;
-    object-position: center;
-    object-fit: cover;
-  }
+#root
+  > main
+  > div
+  > div.d-flex.flex-row.px-5.mt-5.justify-content-center
+  > div.carousel-slider.carousel.slide
+  > div
+  > div.carousel-image.active.carousel-item
+  > img {
+  width: 640px;
+  height: 426px;
+  object-position: center;
+  object-fit: cover;
 }
