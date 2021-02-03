@@ -5,6 +5,7 @@ const ROUTES = {
     LISTING: "/listing",
     PROPERTY_DETAILS: "/listing/:id",
     SETTINGS: "/settings",
+    ERROR: ""
   };
   
   export default ROUTES;

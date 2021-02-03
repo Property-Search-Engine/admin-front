@@ -4,6 +4,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Listing from "./components/Listing/Listing";
 import ROUTES from "./utils/routes";
 import PropertyDetails from "./components/PropertyDetails/PropertyDetails";
+import Error from "./components/Error/Error"; 
 
  function App() {
   useEffect(() => {}, []);
@@ -16,12 +17,15 @@ import PropertyDetails from "./components/PropertyDetails/PropertyDetails";
         <Route path={ROUTES.LISTING}>
           <Listing/>
         </Route>
-      <Route path={ROUTES.SETTINGS}>
-        <div>Settings</div>
-      </Route>
-      <Route path={ROUTES.DASHBOARD}>
-        <Dashboard />
-      </Route>
+        <Route path={ROUTES.SETTINGS}>
+          <div>Settings</div>
+        </Route>
+        <Route path={ROUTES.DASHBOARD} exact>
+          <Dashboard />
+        </Route>
+        <Route path={ROUTES.ERROR}>
+          <Error/>
+        </Route>
     </Switch>
   );
 }
