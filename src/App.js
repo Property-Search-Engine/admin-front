@@ -6,6 +6,7 @@ import ROUTES from "./utils/routes";
 import PropertyDetails from "./components/pages/PropertyDetails/PropertyDetails";
 import Error from "./components/pages/Error/Error";
 import LoginContainer from "./redux/containers/pages/LoginContainer";
+import Settings from "./components/pages/Settings/Settings"; 
 
 function App() {
   useEffect(() => {}, []);
@@ -22,7 +23,7 @@ function App() {
         <Listing />
       </Route>
       <Route path={ROUTES.SETTINGS}>
-        <div>Settings</div>
+        <Settings/>
       </Route>
       <Route path={ROUTES.DASHBOARD} exact>
         <Dashboard />
