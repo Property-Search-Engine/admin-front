@@ -10,7 +10,7 @@ if (!firebase.apps.length) {
     storageBucket: "casa-me.appspot.com",
     messagingSenderId: "665838367561",
     appId: "1:665838367561:web:c47ea665f2aa8b9bee6098",
-    measurementId: "G-27YTCYW2XM"
+    measurementId: "G-27YTCYW2XM",
   };
 
   firebase.initializeApp(firebaseConfig);

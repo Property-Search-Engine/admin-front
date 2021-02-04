@@ -5,7 +5,7 @@ import React from "react";
 export default function Result() {
   return (
     //<div className="listingResult">
-      <span className="spanResult">4 Results</span>    
-   // </div>
+    <span className="spanResult">4 Results</span>
+    // </div>
   );
 }

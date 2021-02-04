@@ -1,28 +1,26 @@
-.input-container{
-    @include flex(center, flex-start, column );
-    margin-bottom: 1rem;
+.input-container {
+  @include flex(center, flex-start, column);
+  margin-bottom: 1rem;
+  input {
+    @include border(1px, solid, $input-borders, 4px);
+    padding: 0.2rem 1rem;
+    width: 100%;
+    &:focus {
+      @include border(3px, solid, $primary-orange-half-opacity, 4px);
+    }
+  }
+  &-number {
+    @include flex(space-around, center);
+    @include input-placeholder {
+      color: $text-grey;
+    }
+    margin-bottom: 0.5rem;
+    label {
+      margin: 0;
+    }
     input {
-        @include border(1px, solid, $input-borders, 4px);
-        padding: 0.2rem 1rem;
-        width: 100%;
-        &:focus{
-            @include border(3px, solid, $primary-orange-half-opacity, 4px);
-        }
+      @include border(1px, solid, $input-borders, 4px);
+      width: 5rem;
     }
-    &-number{
-        @include flex(space-around, center);
-        @include input-placeholder {
-            color: $text-grey;
-        }
-        margin-bottom: 0.5rem;
-        label{
-            margin: 0;
-        }
-        input{
-            @include border(1px, solid, $input-borders, 4px);
-            width: 5rem;
-        }
-
-    }
-    
+  }
 }

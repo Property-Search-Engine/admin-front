@@ -59,7 +59,7 @@ describe("App behaviour", () => {
       it(`should contain the right content`, () => {
         const { getByText } = renderWithReduxAndRouter(<App />);
         expect(
-          getByText("Assembler School Recipes", { exact: false }),
+          getByText("Assembler School Recipes", { exact: false })
         ).toBeInTheDocument();
 
         expect(getByText("Registrar", { exact: false })).toBeInTheDocument();
@@ -72,11 +72,11 @@ describe("App behaviour", () => {
       it(`should contain the right content`, () => {
         const { getByText } = renderWithReduxAndRouter(<App />);
         expect(
-          getByText("Descubre nuestras mejores recetas", { exact: false }),
+          getByText("Descubre nuestras mejores recetas", { exact: false })
         ).toBeInTheDocument();
 
         expect(
-          getByText("Nuestros expertos cocineros", { exact: false }),
+          getByText("Nuestros expertos cocineros", { exact: false })
         ).toBeInTheDocument();
       });
     });
@@ -86,17 +86,17 @@ describe("App behaviour", () => {
         const { getByText } = renderWithReduxAndRouter(<App />);
 
         expect(
-          getByText("Cargando recetas...", { exact: false }),
+          getByText("Cargando recetas...", { exact: false })
         ).toBeInTheDocument();
       });
 
       it(`should contain the right content once its loaded`, async () => {
         const { queryByText, queryAllByText } = renderWithReduxAndRouter(
-          <App />,
+          <App />
         );
 
         await waitFor(() =>
-          expect(queryByText("recipe-3-name")).toBeInTheDocument(),
+          expect(queryByText("recipe-3-name")).toBeInTheDocument()
         );
         const items = await queryAllByText(/Tiempo Estimado/);
 
@@ -107,14 +107,14 @@ describe("App behaviour", () => {
         const { getByTestId, getByText } = renderWithReduxAndRouter(<App />);
 
         await waitFor(() =>
-          expect(getByTestId("recipe-card-3")).toBeInTheDocument(),
+          expect(getByTestId("recipe-card-3")).toBeInTheDocument()
         );
         userEvent.click(getByTestId("recipe-card-3"));
 
         await waitFor(() =>
           expect(
-            getByText("Gordon Ramsay", { exact: false }),
-          ).toBeInTheDocument(),
+            getByText("Gordon Ramsay", { exact: false })
+          ).toBeInTheDocument()
         );
 
         expect(getByText("Pasta")).toBeInTheDocument();
@@ -132,15 +132,15 @@ describe("App behaviour", () => {
         } = renderWithReduxAndRouter(<App />);
 
         await waitFor(() =>
-          expect(getByTestId("recipe-card-3")).toBeInTheDocument(),
+          expect(getByTestId("recipe-card-3")).toBeInTheDocument()
         );
 
         userEvent.click(getByTestId("recipe-card-3"));
 
         await waitFor(() =>
           expect(
-            getByText("Gordon Ramsay", { exact: false }),
-          ).toBeInTheDocument(),
+            getByText("Gordon Ramsay", { exact: false })
+          ).toBeInTheDocument()
         );
 
         expect(queryByTestId("recipe-new-comment")).toBeFalsy();
@@ -148,7 +148,7 @@ describe("App behaviour", () => {
         store.dispatch(signUp(testUser));
 
         await waitFor(() =>
-          expect(getByTestId("recipe-new-comment")).toBeInTheDocument(),
+          expect(getByTestId("recipe-new-comment")).toBeInTheDocument()
         );
 
         const comment = "test_comment_body";
@@ -167,7 +167,7 @@ describe("App behaviour", () => {
       it(`should contain the right content`, () => {
         const { getByText } = renderWithReduxAndRouter(<App />);
         expect(
-          getByText("Assembler School MERN Starter", { exact: false }),
+          getByText("Assembler School MERN Starter", { exact: false })
         ).toBeInTheDocument();
       });
     });
@@ -180,7 +180,7 @@ describe("App behaviour", () => {
       it(`should contain the right content`, () => {
         const { getByText } = renderWithReduxAndRouter(<App />, route);
         expect(
-          getByText("Nuevo usuario", { exact: false }),
+          getByText("Nuevo usuario", { exact: false })
         ).toBeInTheDocument();
 
         expect(getByText("Nombre", { exact: false })).toBeInTheDocument();
@@ -199,7 +199,7 @@ describe("App behaviour", () => {
         userEvent.click(cta);
 
         await waitFor(() =>
-          expect(getByTestId("header-logout")).toBeInTheDocument(),
+          expect(getByTestId("header-logout")).toBeInTheDocument()
         );
       });
     });
@@ -226,7 +226,7 @@ describe("App behaviour", () => {
         userEvent.click(cta);
 
         await waitFor(() =>
-          expect(getByTestId("header-logout")).toBeInTheDocument(),
+          expect(getByTestId("header-logout")).toBeInTheDocument()
         );
       });
     });

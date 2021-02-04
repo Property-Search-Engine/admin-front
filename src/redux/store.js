@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "development") {
 const store = createStore(
   /* persistedReducer, */
   rootReducer, // {infoUser: {}, infoProperties: {currentProperty:{}, lastListing:{}}}
-  composeWithDevTools(applyMiddleware(...middleware)),
+  composeWithDevTools(applyMiddleware(...middleware))
 );
 
 /* export const persistor = persistStore(store); */

@@ -23,10 +23,10 @@ function ModalForm(props) {
   ];
   const statusOptions = ["Available", "Sold"];
   const equipmentOptions = {
-    full: 'Fully furnished',
-    partial: 'Partial furnished',
-    none: 'Not furnished'
-  }
+    full: "Fully furnished",
+    partial: "Partial furnished",
+    none: "Not furnished",
+  };
   const getDefaultOptions = (options) => options[0].toLowerCase();
   const {
     isModalFormOpen,
@@ -40,7 +40,7 @@ function ModalForm(props) {
       status: getDefaultOptions(statusOptions),
       type: getDefaultOptions(typeOptions),
       condition: toCamelCase(conditionOptions[0]),
-      equipment: 'full',
+      equipment: "full",
       price: "",
       bedroom: 1,
       bath: 1,
@@ -67,7 +67,7 @@ function ModalForm(props) {
     m2,
     date,
     filters,
-    description
+    description,
   } = formData;
   const handleInputChange = (inputName, inputValue) => {
     setFormData({ ...formData, [inputName]: inputValue });
@@ -165,12 +165,12 @@ function ModalForm(props) {
             />
             <SelectInput
               options={equipmentOptions}
-              inputName='equipment'
-              labelText= 'Equipment'
-              labelImgSrc= {svgPath('tagblue')}
+              inputName="equipment"
+              labelText="Equipment"
+              labelImgSrc={svgPath("tagblue")}
               onChange={handleInputChange}
               value={equipment}
-            /> 
+            />
           </div>
           <div className="modal-form-column">
             <TextInput

@@ -38,7 +38,7 @@
       display: block;
     }
 
-    &:not(:checked):hover  ~ .checkmark {
+    &:not(:checked):hover ~ .checkmark {
       background-color: #ccc;
     }
   }
@@ -59,28 +59,26 @@
     position: absolute;
     display: none;
   }
-  
 
   /* On mouse-over, add a grey background color */
-  
 }
 
-.radioContainer{
-  .checkmark{
+.radioContainer {
+  .checkmark {
     border-radius: 50%;
   }
-/* Style the indicator (dot/circle) */
-.checkmark:after {
-  top: 5px;
-  left: 5px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: white;
+  /* Style the indicator (dot/circle) */
+  .checkmark:after {
+    top: 5px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+  }
 }
-}
-.checkContainer{
-  .checkmark{
+.checkContainer {
+  .checkmark {
     border-radius: 4px;
   }
   /* Style the indicator (dot/circle) */

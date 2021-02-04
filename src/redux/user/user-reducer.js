@@ -16,8 +16,6 @@ export const UserInitialState = {
   },
 };
 
-
-
 const UserReducer = (state = UserInitialState, action) => {
   switch (action.type) {
     case UserTypes.SIGNUP_REQUEST: {

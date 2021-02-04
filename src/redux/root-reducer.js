@@ -10,9 +10,6 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-
-
 //Props --> React
-
 
 //Properties --> Buildings
