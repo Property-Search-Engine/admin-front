@@ -5,6 +5,7 @@ import ListingRowContainer from "../ListingRowContainer/ListingRowContainer.js";
 import Result from "../Result/Results";
 import ModalForm from "../../../common/ModalForm/ModalForm.js";
 import Thead from "../Thead/Thead.js";
+import Filters from "../Filters/Filters.js";
 
 const propertyEx = {
   homeType: "house",
@@ -103,6 +104,7 @@ export default function List({
       {whichView === "listing" && (
         <div className="manageList">
           <Result />
+          <Filters />
         </div>
       )}
 

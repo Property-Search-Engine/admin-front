@@ -1,0 +1,29 @@
+#max-input,
+#min-input {
+  width: 8rem;
+  margin: 5px;
+}
+.inputSlideRange {
+  display: flex;
+  #min,
+  #max {
+    width: 8rem;
+    height: 2rem;
+    margin: 14px auto;
+    text-align: center;
+    background: none;
+    border: 1px solid $input-borders;
+  }
+  .rS-separator {
+    line-height: 55px;
+    margin: 0px 8px 9px 8px;
+  }
+}
+.MuiSlider-rail,
+.MuiSlider-track {
+  height: 5px !important;
+}
+.MuiSlider-track,
+.MuiSlider-thumb {
+  background-color: $primary-blue !important;
+}
