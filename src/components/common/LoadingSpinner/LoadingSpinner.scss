@@ -1,0 +1,48 @@
+.loader {
+  animation: spin 1s infinite linear;
+  border: solid 1vmin transparent;
+  border-radius: 50%;
+  border-right-color: $primary-orange;
+  border-top-color: $primary-orange;
+  box-sizing: border-box;
+  height: 10vmin;
+  left: calc(50% - 10vmin);
+  position: fixed;
+  top: calc(50% - 10vmin);
+  width: 10vmin;
+  z-index: 1;
+  &:before {
+    animation: spin 2s infinite linear;
+    border: solid 1vmin transparent;
+    border-radius: 50%;
+    border-right-color: $primary-blue;
+    border-top-color: $primary-blue;
+    box-sizing: border-box;
+    content: "";
+    height: 8vmin;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 8vmin;
+  }
+  &:after {
+    animation: spin 3s infinite linear;
+    border: solid 1vmin transparent;
+    border-radius: 50%;
+    border-right-color: $primary-grey;
+    border-top-color: $primary-grey;
+    box-sizing: border-box;
+    content: "";
+    height: 6vmin;
+    left: 1vmin;
+    position: absolute;
+    top: 1vmin;
+    width: 6vmin;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
