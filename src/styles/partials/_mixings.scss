@@ -1,9 +1,9 @@
-@mixin flex($justify, $align, $direction: row){
+@mixin flex($justify, $align, $direction: row) {
   display: flex;
   justify-content: $justify;
   align-items: $align;
   @if $direction {
-    flex-direction: $direction
+    flex-direction: $direction;
   }
 }
 
@@ -64,7 +64,7 @@
   background-clip: padding-box;
 }
 
-@mixin border($px, $style, $color, $pxRadius: 0px){
+@mixin border($px, $style, $color, $pxRadius: 0px) {
   border: $px $style $color;
   @if $pxRadius {
     @include border-radius($pxRadius);

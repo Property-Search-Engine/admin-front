@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Listing from "./components/Listing/Listing";
+import Dashboard from "./components/pages/Dashboard/Dashboard";
+import Listing from "./components/pages/Listing/Listing";
 import ROUTES from "./utils/routes";
-import PropertyDetails from "./components/PropertyDetails/PropertyDetails";
-import Error from "./components/Error/Error"; 
+import PropertyDetails from "./components/pages/PropertyDetails/PropertyDetails";
+import Error from "./components/pages/Error/Error";
+import LoginContainer from "./redux/containers/pages/LoginContainer";
 
- function App() {
+function App() {
   useEffect(() => {}, []);
 
   return (
     <Switch>
-        <Route path={ROUTES.PROPERTY_DETAILS}>
-          <PropertyDetails />
-        </Route>
-        <Route path={ROUTES.LISTING}>
-          <Listing/>
-        </Route>
-        <Route path={ROUTES.SETTINGS}>
-          <div>Settings</div>
-        </Route>
-        <Route path={ROUTES.DASHBOARD} exact>
-          <Dashboard />
-        </Route>
-        <Route path={ROUTES.ERROR}>
-          <Error/>
-        </Route>
+      <Route path={ROUTES.LOGIN}>
+        <LoginContainer />
+      </Route>
+      <Route path={ROUTES.PROPERTY_DETAILS}>
+        <PropertyDetails />
+      </Route>
+      <Route path={ROUTES.LISTING}>
+        <Listing />
+      </Route>
+      <Route path={ROUTES.SETTINGS}>
+        <div>Settings</div>
+      </Route>
+      <Route path={ROUTES.DASHBOARD} exact>
+        <Dashboard />
+      </Route>
+      <Route path={ROUTES.ERROR}>
+        <Error />
+      </Route>
     </Switch>
   );
 }
 export default App;
-

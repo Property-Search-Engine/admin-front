@@ -12,7 +12,7 @@ function RadioInputs(props) {
     values,
     onChange,
   } = props;
-  
+
   const [checked, setChecked] = useState([]);
 
   useEffect(() => {

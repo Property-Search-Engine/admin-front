@@ -4,7 +4,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 @import "../components/common/Sidebar/Sidebar.scss";
-@import "../components/Dashboard/Dashboard.scss";
+@import "../components/pages/Dashboard/Dashboard.scss";
 @import "../components/common/Header/Header.scss";
 
 @import "../components/common/Notification/Notification.scss";
@@ -15,10 +15,11 @@
 @import "../components/common/Inputs/Input.scss";
 @import "../components/common/Inputs/RadioCheckInputs.scss";
 
-@import "../components/Listing/ListingContainer/ListContainer.scss";
+@import "../components/pages/Listing/List/List.scss";
 
-@import "../components/Listing/ImageCarousel/ImageCarousel.scss";
-@import "../components/PropertyDetails/PropertyDetails.scss";
+@import "../components/pages/Listing/ImageCarousel/ImageCarousel.scss";
+@import "../components/pages/PropertyDetails/PropertyDetails.scss";
 
-@import "../components/ExtraPropertyDetails/ExtraPropertyDetails.scss";
-@import "../components/Error/Error.scss";
+@import "../components/pages/PropertyDetails/ExtraPropertyDetails/ExtraPropertyDetails.scss";
+
+@import "../components/pages/Error/Error.scss";
