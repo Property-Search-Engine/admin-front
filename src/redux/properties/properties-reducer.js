@@ -57,6 +57,7 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
     case PropertiesTypes.EDIT_PROPERTY_SUCCESS: {
       return {
         ...state,
+        success: state.lastRequest + " was successful",
         lastEditedProperty: action.payload,
       };
     }
