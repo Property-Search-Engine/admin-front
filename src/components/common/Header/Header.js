@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, FormControl, Form, Button, Image } from "react-bootstrap";
 import Notification from "../Notification/Notification";
 import AdminSettings from "../AdminSettings/AdminSettings";
+import AdminSettingsContainer from "../../../redux/containers/pages/AdminSettingsContainer";
 
 export default function Header() {
   return (
@@ -16,7 +17,7 @@ export default function Header() {
       </div>
       <div className="d-flex flex-row admin-settings-container justify-content-around">
         <Notification />
-        <AdminSettings />
+        <AdminSettingsContainer />
       </div>
     </Navbar>
   );
