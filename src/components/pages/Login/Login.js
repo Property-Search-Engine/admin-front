@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import ROUTES from "../../../utils/routes";
+import { signOut } from "../../../firebase/firebase";
 
 function Login({
-  currentUserState: { isAuthenticated, loginError, isLoggingIn } = {},
+  currentUserState: { currentUser, token, loginError } = {},
   login,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -18,7 +18,7 @@ function Login({
     }
   }
 
-  if (isAuthenticated) {
+  if (token) {
     return <Redirect to={ROUTES.DASHBOARD} />;
   }
 
@@ -49,11 +49,7 @@ function Login({
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <Button
-              htmlType="submit"
-              additionalClasses="mt-4 btn-block"
-              disabled={isLoggingIn}
-            >
+            <Button type="submit" variant="primary">
               Iniciar sesión
             </Button>
             {loginError && (
@@ -64,6 +60,9 @@ function Login({
           </form>
         </section>
       </div>
+      <Button onClick={() => signOut()} variant="primary">
+        SignOut
+      </Button>
     </main>
   );
 }
