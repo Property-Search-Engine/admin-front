@@ -1,15 +1,42 @@
 import PropertiesTypes from "./properties-types";
-
+import { propertyEx, propertyEx2 } from "../../utils/mockOfProperties";
 /* export const resetStoreAndLogOut = () => ({
   type: UserTypes.RESET_STORE_AND_LOG_OUT,
 });
  */
+
+export const propertyDetails = (id) => {
+  try {
+    const property = getPropertyById(id);
+    if (property !== []) {
+      return {
+        type: PropertiesTypes.DETAIL_PROPERTY_SUCCESS,
+        payload: property[0],
+      };
+    } else {
+      propertyDetailsError("Not found property");
+    }
+  } catch (error) {
+    propertyDetailsError(error.message);
+  }
+};
+function getPropertyById(id) {
+  const properties = [propertyEx, propertyEx2];
+  return properties.filter((property) => property._id === id);
+}
+export const propertyDetailsError = (message) => ({
+  type: PropertiesTypes.EDIT_PROPERTY_ERROR,
+  payload: message,
+});
+export const propertyDetailsRequest = () => {
+  return { type: PropertiesTypes.EDIT_PROPERTY_REQUEST };
+};
+
 export const listPropertiesError = (message) => ({
   type: PropertiesTypes.LIST_PROPERTIES_ERROR,
   payload: message,
 });
 export const listPropertiesRequest = () => {
-  console.log(PropertiesTypes.LIST_PROPERTIES_REQUEST + " Started");
   return { type: PropertiesTypes.LIST_PROPERTIES_REQUEST };
 };
 export const listProperties = (filters = "", token = "") => {
@@ -26,7 +53,7 @@ export const listProperties = (filters = "", token = "") => {
               }); */
       dispatch({
         type: PropertiesTypes.LIST_PROPERTIES_SUCCESS,
-        payload: list,
+        payload: [propertyEx, propertyEx2],
       });
     } catch (error) {
       dispatch(listPropertiesError(error.message));

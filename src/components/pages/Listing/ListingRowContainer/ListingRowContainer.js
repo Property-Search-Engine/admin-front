@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Image from "react-bootstrap/Image";
+import { Redirect } from "react-router-dom";
 import { svgPath } from "../../../../utils/helpers";
+import ROUTES from "../../../../utils/routes";
 
 export default function ListingRowContainer(props) {
   const { whichView, property } = props;
-
+  const [isRowClicked, setIsRowClicked] = useState(false);
   function handleClick(e) {
     e.preventDefault();
-    //window.location.href = '/listing/' + property._id ;
-    // setCurrentProperty(property);
+    setIsRowClicked(true);
+  }
+
+  if (isRowClicked) {
+    return <Redirect to={"listing/" + property._id} />;
   }
 
   return (

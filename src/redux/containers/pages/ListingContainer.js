@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 /* import { currentUserStateSelector } from "../../user/user-selectors"; */
 import { listProperties } from "../../properties/properties-actions";
 
-import List from "../../../components/pages/Listing/List/List";
+import Listing from "../../../components/pages/Listing/Listing";
 
 //Pass the properties state to be accessible by the component
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    propertiesList: state.properties,
-    whichView: ownProps.whichView,
+    propertiesList: state.properties.propertiesList,
   };
 };
 
@@ -18,4 +17,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchlistProperties: () => dispatch(listProperties()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(Listing);
