@@ -43,7 +43,7 @@ export default function Filters(props) {
                 rounded
                 className="form-icon-label"
               />
-              <GroupButtons
+              <GroupButtons className="filters-btn"
                 handleChange={handleFilterChange}
                 filterKey="bedrooms"
                 clicked={filters.bedrooms}

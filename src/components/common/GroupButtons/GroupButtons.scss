@@ -2,11 +2,24 @@
   width: auto;
 }
 .btn-outline-primary {
+  border-color: $primary-blue !important;
+  color: black;
   font-size: 14px !important;
   margin: 5px;
   padding: 5px !important;
+
+  &:hover {
+    border-color: $primary-blue !important;
+    background-color: $primary-blue;
+    color: black;
+  }
+  
 }
 
 .btn-clicked {
   background: $primary-blue !important;
+}
+
+.filters-btn{
+  background-color: aqua;
 }
