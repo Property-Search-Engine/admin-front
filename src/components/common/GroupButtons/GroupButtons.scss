@@ -8,18 +8,15 @@
   margin: 5px;
   padding: 5px !important;
 
-  &:hover {
+  &:hover, &:focus {
     border-color: $primary-blue !important;
     background-color: $primary-blue;
     color: black;
   }
+ 
   
 }
 
-.btn-clicked {
-  background: $primary-blue !important;
-}
 
-.filters-btn{
-  background-color: aqua;
-}
+
+
