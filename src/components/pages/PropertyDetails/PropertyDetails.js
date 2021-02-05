@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../common/Header/Header";
 import Sidebar from "../../common/Sidebar/Sidebar";
-import ListContainer from "../Listing/List/List";
+import ListContainer from "../../../redux/containers/components/ListContainer";
 import ImageCarousel from "../Listing/ImageCarousel/ImageCarousel";
 import ExtraPropertyDetails from "./ExtraPropertyDetails/ExtraPropertyDetails";
 

@@ -1,6 +1,6 @@
 import UserTypes from "./user-types";
 
-export const UserInitialState = {
+/* export const UserInitialState = {
   isLoggingIn: false,
   loginError: null,
   isAuthenticated: false,
@@ -14,6 +14,12 @@ export const UserInitialState = {
     email: null,
     token: null,
   },
+}; */
+export const UserInitialState = {
+  currentUser: null,
+  token: null,
+  loginError: null,
+  res: null,
 };
 
 const UserReducer = (state = UserInitialState, action) => {
@@ -60,9 +66,10 @@ const UserReducer = (state = UserInitialState, action) => {
         isLoggingIn: false,
         loginError: null,
         currentUser: {
-          name: action.payload.name,
+          firstname: action.payload.firstname,
           lastname: action.payload.lastname,
           email: action.payload.email,
+          phone: action.payload.phone,
           token: action.payload.token,
         },
       };
