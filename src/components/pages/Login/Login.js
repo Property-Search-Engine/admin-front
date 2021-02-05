@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import ROUTES from "../../../utils/routes";
 import { signOut } from "../../../firebase/firebase";
@@ -63,6 +63,9 @@ function Login({
       <Button onClick={() => signOut()} variant="primary">
         SignOut
       </Button>
+      <Button onClick={() => signOut()} variant="primary">
+              <Link to={ROUTES.DASHBOARD}>DASHBOARD</Link>
+       </Button>
     </main>
   );
 }
