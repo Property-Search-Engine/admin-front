@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { Table, Image } from "react-bootstrap";
 import ListingRowContainer from "../ListingRowContainer/ListingRowContainer.js";
@@ -6,8 +6,6 @@ import Result from "../Result/Results";
 import ModalForm from "../../../common/ModalForm/ModalForm.js";
 import Thead from "../Thead/Thead.js";
 import Filters from "../Filters/Filters.js";
-
-import { propertyEx, propertyEx2 } from "../../../../utils/mockOfProperties";
 
 export default function List({ whichView, properties }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -66,15 +64,19 @@ export default function List({ whichView, properties }) {
                 </th>
               )}
 
-              {headerTexts.map((ht) => (
-                <Thead headerText={ht} />
+              {headerTexts.map((ht, i) => (
+                <Thead key={`table-header-cell-${i}`} headerText={ht} />
               ))}
             </tr>
           </thead>
           <tbody>
             {/* {objetoQueDevuelva.map(obj => <ListingRowContainer whichView={whichView} property={obj}/> )} */}
-            {properties.map((property) => (
-              <ListingRowContainer whichView={whichView} property={property} />
+            {properties.map((property, i) => (
+              <ListingRowContainer
+                key={`list-row-${i}`}
+                whichView={whichView}
+                property={property}
+              />
             ))}
           </tbody>
         </Table>

@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   return {
     id: id,
-    property: state.properties.singlePropertyDetails,
+    property: state.propertiesState.singlePropertyDetails,
   };
 };
 

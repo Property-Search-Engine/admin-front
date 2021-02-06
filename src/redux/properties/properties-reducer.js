@@ -65,6 +65,7 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
       return {
         ...state,
         singlePropertyDetails: action.payload,
+        loading: false,
       };
     }
     default: {

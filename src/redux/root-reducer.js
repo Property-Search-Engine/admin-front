@@ -4,8 +4,8 @@ import UserReducer from "./user/user-reducer";
 import PropertiesReducer from "./properties/properties-reducer";
 
 const rootReducer = combineReducers({
-  user: UserReducer, // infoUser: {}
-  properties: PropertiesReducer, // infoProperties: {}
+  userState: UserReducer, // infoUser: {}
+  propertiesState: PropertiesReducer, // infoProperties: {}
 });
 
 export default rootReducer;

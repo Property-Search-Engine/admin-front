@@ -1,6 +1,6 @@
 import UserTypes from "./user-types";
 
-/* export const UserInitialState = {
+export const UserInitialState = {
   isLoggingIn: false,
   loginError: null,
   isAuthenticated: false,
@@ -9,17 +9,11 @@ import UserTypes from "./user-types";
   isSigningOut: false,
   signOutError: null,
   currentUser: {
-    name: null,
+    firstname: null,
     lastname: null,
     email: null,
     token: null,
   },
-}; */
-export const UserInitialState = {
-  currentUser: null,
-  token: null,
-  loginError: null,
-  res: null,
 };
 
 const UserReducer = (state = UserInitialState, action) => {
@@ -38,7 +32,7 @@ const UserReducer = (state = UserInitialState, action) => {
         isSigningUp: false,
         loginError: null,
         currentUser: {
-          name: action.payload.name,
+          firstname: action.payload.name,
           lastname: action.payload.lastname,
           email: action.payload.email,
           token: action.payload.token,
@@ -78,6 +72,7 @@ const UserReducer = (state = UserInitialState, action) => {
       return {
         ...state,
         isLoggingIn: false,
+        isAuthenticated: false,
         loginError: action.payload,
       };
     }
@@ -102,7 +97,7 @@ const UserReducer = (state = UserInitialState, action) => {
         signOutError: null,
         isAuthenticated: false,
         currentUser: {
-          name: null,
+          firstname: null,
           lastname: null,
           email: null,
           token: null,

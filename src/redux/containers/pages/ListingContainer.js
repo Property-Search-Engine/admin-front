@@ -8,7 +8,8 @@ import Listing from "../../../components/pages/Listing/Listing";
 //Pass the properties state to be accessible by the component
 const mapStateToProps = (state) => {
   return {
-    propertiesList: state.properties.propertiesList,
+    propertiesList: state.propertiesState.propertiesList,
+    loading: state.propertiesState.loading,
   };
 };
 

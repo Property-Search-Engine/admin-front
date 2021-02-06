@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "./components/pages/Dashboard/Dashboard";
-import Listing from "./components/pages/Listing/Listing";
 import ROUTES from "./utils/routes";
 import Error from "./components/pages/Error/Error";
 import LoginContainer from "./redux/containers/pages/LoginContainer";
 import Settings from "./components/pages/Settings/Settings";
 import PropertyDetailsContainer from "./redux/containers/pages/PropertyDetailsContainer";
-import PropertyDetails from "./components/pages/PropertyDetails/PropertyDetails";
 import ListingContainer from "./redux/containers/pages/ListingContainer";
 
-function App() {
-  useEffect(() => {}, []);
+function App({ fetchlistProperties }) {
+  useEffect(() => {
+    fetchlistProperties();
+  }, []);
 
   return (
     <Switch>

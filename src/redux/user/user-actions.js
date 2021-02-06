@@ -2,7 +2,7 @@ import UserTypes from "./user-types";
 import {
   singInWithGoogle,
   singInWithEmailAndPassword,
-  signOut,
+  firebaseSignout,
   auth,
 } from "../../firebase/firebase";
 import { finalEndpoints } from "../../utils/endpoints";
@@ -90,7 +90,7 @@ export function signUp({ firstname, lastname, phone, email, password }) {
   };
 }
 
-export function login({ email, password }) {
+export function login(email, password) {
   return async function loginThunk(dispatch) {
     dispatch(loginRequest());
 
@@ -101,11 +101,12 @@ export function login({ email, password }) {
       } else {
         res = await singInWithGoogle();
       }
-
       //Use auth class from firebase to get token
       const token = await auth.currentUser.getIdToken();
 
       const userCredentials = await gatherInfoByToken(token);
+      console.log(userCredentials);
+      console.log(res);
       dispatch(loginSuccess(userCredentials, token));
     } catch (error) {
       dispatch(loginError(error.message));
@@ -130,7 +131,7 @@ export function signout() {
   return async function logoutThunk(dispatch) {
     dispatch(signoutRequest());
     try {
-      const res = await signOut();
+      await firebaseSignout();
       dispatch(signoutSuccess());
     } catch (error) {
       dispatch(signoutError("Missing auth token"));

@@ -2,22 +2,32 @@ import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import ROUTES from "../../../utils/routes";
-import { signOut } from "../../../firebase/firebase";
 
 function Login({
   currentUserState: { currentUser, token, loginError } = {},
   login,
+  signout,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [innerLoginError, setInnerLoginError] = useState(loginError);
   function handleSubmit(e) {
     e.preventDefault();
 
     if (email !== "" && password !== "") {
-      login({ email, password });
+      login(email, password);
+    } else {
+      setInnerLoginError("You must enter an email and a password");
     }
   }
-
+  function handleGoogleClick(e) {
+    e.preventDefault();
+    login();
+  }
+  function handleSignoutClick(e) {
+    e.preventDefault();
+    signout();
+  }
   if (token) {
     return <Redirect to={ROUTES.DASHBOARD} />;
   }
@@ -50,22 +60,25 @@ function Login({
               />
             </div>
             <Button type="submit" variant="primary">
-              Iniciar sesión
+              Sign In
             </Button>
-            {loginError && (
+            <Button type="button" variant="primary" onClick={handleGoogleClick}>
+              Sign In with Google
+            </Button>
+            {innerLoginError && (
               <div className="bg-dark p-3 mt-3">
-                <p className="text-white mb-0">{loginError}</p>
+                <p className="text-white mb-0">{innerLoginError}</p>
               </div>
             )}
           </form>
         </section>
       </div>
-      <Button onClick={() => signOut()} variant="primary">
+      <Button onClick={handleSignoutClick} variant="primary">
         SignOut
       </Button>
-      <Button onClick={() => signOut()} variant="primary">
-              <Link to={ROUTES.DASHBOARD}>DASHBOARD</Link>
-       </Button>
+      <Button variant="primary">
+        <Link to={ROUTES.DASHBOARD}>DASHBOARD</Link>
+      </Button>
     </main>
   );
 }

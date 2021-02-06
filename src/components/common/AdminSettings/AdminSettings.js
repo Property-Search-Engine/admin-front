@@ -1,26 +1,25 @@
 import React, { useState } from "react";
-import { DropdownButton, Dropdown, ButtonGroup, Image } from "react-bootstrap";
+import { Dropdown, Image } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
-import ROUTES from "../../../utils/routes"; 
+import ROUTES from "../../../utils/routes";
 import { Redirect } from "react-router-dom";
 
 export default function AdminSettings(props) {
+  const [isSignOut, setisSignOut] = useState(false);
 
-  const [isSignOut, setisSignOut] = useState(false); 
+  const { currentUser, signout } = props;
 
-  const { currentUserState, signout } = props; 
+  console.log(currentUser);
 
-  console.log(currentUserState); 
-
-  if(isSignOut || currentUserState.currentUser === null) {
-    return <Redirect to={ROUTES.LOGIN} />
-  }
+  /* if (isSignOut || currentUser.token === null) {
+    return <Redirect to={ROUTES.LOGIN} />;
+  } */
 
   function handleClick(e) {
-      e.preventDefault()
-      signout()
-      setisSignOut(true) 
-  }; 
+    e.preventDefault();
+    signout();
+    setisSignOut(true);
+  }
 
   return (
     <div className="d-flex flex-row">
@@ -30,7 +29,9 @@ export default function AdminSettings(props) {
       /> */}
       <Dropdown className="main-btn">
         <button className="dropdown-btn-overlay">
-          {currentUserState && `${currentUserState.currentUser.firstname} ${currentUserState.currentUser.lastname}`}
+          {currentUser
+            ? `${currentUser.firstname} ${currentUser.lastname}`
+            : "Not user own server connection working"}
           <span>
             {" "}
             <Image

@@ -22,7 +22,6 @@ function SelectInput(props) {
         custom
       >
         {Object.keys(options).map((opt, i) => {
-          console.log(opt, value);
           return (
             <option
               key={`select-${opt}-${i}`}

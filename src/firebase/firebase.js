@@ -39,7 +39,7 @@ export function sendPasswordResetEmail(email) {
   return auth.sendPasswordResetEmail(email);
 }
 
-export function signOut() {
+export function firebaseSignout() {
   return auth.signOut();
 }
 
