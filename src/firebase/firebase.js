@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/storage";
 
 if (!firebase.apps.length) {
   // Paste your config object here ⬇️
@@ -20,6 +21,8 @@ if (!firebase.apps.length) {
 }
 
 export const auth = firebase.auth();
+
+export const firebaseStorage = firebase.storage();
 
 export function singInWithGoogle() {
   const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
