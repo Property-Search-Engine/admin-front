@@ -29,9 +29,11 @@ function ModalForm(props) {
   };
   const getDefaultOptions = (options) => options[0].toLowerCase();
   const {
+    createProperty,
     isModalFormOpen,
     handleModalToggle,
     comingFormData = {
+      kind: "Home",
       street: "",
       number: "",
       city: "",
@@ -48,10 +50,12 @@ function ModalForm(props) {
       date: "",
       filters: [],
       description: "",
+      images: {},
     },
   } = props;
   const [formData, setFormData] = useState(comingFormData);
   const {
+    kind,
     street,
     number,
     city,
@@ -68,17 +72,26 @@ function ModalForm(props) {
     date,
     filters,
     description,
+    images,
   } = formData;
+  const [imagesInputValue, setImagesInputValue] = useState("");
   const handleInputChange = (inputName, inputValue) => {
+    console.log(inputValue);
     setFormData({ ...formData, [inputName]: inputValue });
   };
+
+  // useEffect(() => {
+  //   return () => {
+  //     cleanup
+  //   }
+  // }, [input])
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // close();
+    // e.target.reset();
 
-    //Fetch to endpoint
-
-    close();
-    e.target.reset();
+    createProperty(formData);
   };
   function close() {
     const fadeOutTime = 300;
@@ -239,6 +252,22 @@ function ModalForm(props) {
                 }
                 placeholder="Add here the description...  "
                 value={description}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>
+                <Image src={svgPath("tagblue")} className="form-icon-label" />
+                Upload Property Images
+              </Form.Label>
+              <input
+                type="file"
+                inputName="images"
+                value={imagesInputValue}
+                multiple
+                onChange={(e) => {
+                  setImagesInputValue(e.target.value);
+                  handleInputChange("images", e.target.files);
+                }}
               />
             </Form.Group>
             <div className="d-flex">
