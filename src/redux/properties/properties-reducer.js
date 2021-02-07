@@ -55,6 +55,7 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
           ...state.createdPropertiesInSession,
           action.payload,
         ],
+        loading: false,
       };
     }
     case PropertiesTypes.EDIT_PROPERTY_SUCCESS: {

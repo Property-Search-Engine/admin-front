@@ -1,6 +1,6 @@
 import PropertiesTypes from "./properties-types";
 import { propertyEx, propertyEx2 } from "../../utils/mockOfProperties";
-import { auth } from "../../firebase/firebase";
+import { auth, firebaseStorage } from "../../firebase/firebase";
 import { finalEndpoints } from "../../utils/endpoints";
 import { authHeader, createFormData } from "../../utils/helpers";
 
@@ -68,3 +68,56 @@ export const listProperties = (filters = { kind: "home" }) => {
     }
   };
 };
+
+export const createPropertyRequest = () => ({
+  type: PropertiesTypes.CREATE_PROPERTY_REQUEST,
+});
+export const createPropertyError = (message) => ({
+  type: PropertiesTypes.DELETE_PROPERTY_ERROR,
+  payload: message,
+});
+export const createPropertySuccess = (newProperty) => ({
+  type: PropertiesTypes.CREATE_PROPERTY_SUCCESS,
+  payload: newProperty,
+});
+
+//** Function/Action to pass to components in this case ModalFormComponent
+export function createProperty(newPropertyObj) {
+  return async function createPropertyThunk(dispatch) {
+    dispatch(createPropertyRequest());
+
+    try {
+      //Storage in firebase to have urls back
+      const imagesBufferObj = newPropertyObj.images;
+      const arrayOfImagesUrl = [];
+      Object.values(imagesBufferObj).forEach(async (file) => {
+        const uploadTask = await firebaseStorage
+          .ref(`/images/${file.name}`)
+          .put(file);
+        const imgUrl = await firebaseStorage
+          .ref("images")
+          .child(file.name)
+          .getDownloadURL();
+        arrayOfImagesUrl.push(imgUrl);
+      });
+      newPropertyObj.images = arrayOfImagesUrl;
+      newPropertyObj.surface = newPropertyObj.m2;
+      //Get firebase auth token with the started instance of firebase when logged in
+      const currentUserToken = await auth.currentUser.getIdToken();
+
+      //Connect with our server
+      const formData = createFormData(newPropertyObj);
+      const AuthHeader = authHeader(currentUserToken);
+
+      var newProperty = await fetch(finalEndpoints.createProperty, {
+        method: "POST",
+        body: formData,
+        headers: AuthHeader,
+      });
+
+      dispatch(createPropertySuccess(newProperty.data));
+    } catch (error) {
+      dispatch(createPropertyError(error.message));
+    }
+  };
+}
