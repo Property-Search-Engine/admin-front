@@ -36,8 +36,7 @@ export default function SignupForm({ createEmployee }) {
         email: Yup.string().email("Invalid email address").required("Required"),
 
         password: Yup.string()
-          .min(6, "Must be 6 numbers exactly")
-          .max(6, "Must be 6 characters exactly")
+          .min(6, "Must be 6 characters at least")
           .required("Required"),
       })}
       onSubmit={handleSubmit}
@@ -73,7 +72,7 @@ export default function SignupForm({ createEmployee }) {
           <ErrorMessage component="div" name="email" className="errorMessage" />
 
           <label htmlFor="password">Password</label>
-          <Field name="password" type="number" />
+          <Field name="password" type="text" />
           <ErrorMessage
             component="div"
             name="password"
