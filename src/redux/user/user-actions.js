@@ -70,10 +70,11 @@ export function login(email, password) {
 async function gatherUserInfoByToken(token) {
   const myHeaders = new Headers();
   myHeaders.append("Authorization", "Bearer " + token);
+  console.log(myHeaders.get("Authorization"));
   try {
     const res = await fetch(finalEndpoints.login, {
       method: "POST",
-      headers: myHeaders,
+      headers: new Headers({ Authorization: "Bearer " + token }),
     });
     const user = await res.json();
     return user.data;

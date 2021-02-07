@@ -4,10 +4,10 @@ export const PropertiesInitialState = {
   lastRequest: null,
   error: null,
   success: null,
-  lastErrorMessage: null,
+  lastRequestErrorMessage: null,
   singlePropertyDetails: null,
   propertiesList: null,
-  lastCreatedProperty: null,
+  createdPropertiesInSession: [],
   lastEditedProperty: null,
   userStatistics: null,
   loading: false,
@@ -37,7 +37,7 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
         ...state,
         error: "Failed " + state.lastRequest,
         loading: false,
-        lastErrorMessage: action.payload,
+        lastRequestErrorMessage: action.payload,
       };
     }
     case PropertiesTypes.LIST_PROPERTIES_SUCCESS: {
@@ -51,7 +51,10 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
     case PropertiesTypes.CREATE_PROPERTY_SUCCESS: {
       return {
         ...state,
-        lastCreatedProperty: action.payload,
+        createdPropertiesInSession: [
+          ...state.createdPropertiesInSession,
+          action.payload,
+        ],
       };
     }
     case PropertiesTypes.EDIT_PROPERTY_SUCCESS: {

@@ -52,11 +52,11 @@ export function createEmployee({
     dispatch(createEmployeeRequest());
     try {
       //Firebase signUp
-      if (email && password) {
+      /*  if (email && password) {
         await singInWithEmailAndPassword(email, password);
       } else {
         await singInWithGoogle();
-      }
+      } */
 
       //Get firebase auth token with the started instance of firebase when logged in
       const currentUserToken = await auth.currentUser.getIdToken();
