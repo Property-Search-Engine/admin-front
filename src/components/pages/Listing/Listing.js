@@ -1,17 +1,19 @@
-import React from "react";
-import { Spinner } from "react-bootstrap";
+import React, { useEffect } from "react";
 import Header from "../../common/Header/Header";
 import Sidebar from "../../common/Sidebar/Sidebar";
+import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import List from "./List/List";
 
-function Listing({ propertiesList, loading }) {
+function Listing({ fetchlistProperties, propertiesList, loading }) {
+  if (propertiesList === null) fetchlistProperties();
+
   return (
     <main className="d-flex flex">
       <Sidebar active="listing" />
       <div className="mainContainer">
         <Header />
         {propertiesList === null || loading ? (
-          <Spinner />
+          <LoadingSpinner />
         ) : (
           <List whichView="listing" properties={propertiesList} />
         )}

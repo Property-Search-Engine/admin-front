@@ -52,9 +52,8 @@ export const listProperties = (filters = { kind: "home" }) => {
       //TODO fetch to properties by filters get endpoint
       const res = await fetch(finalEndpoints.getPropertiesList, {
         headers: AuthHeader,
-        body: formData,
       });
-      const list = await res.json();
+      /* const list = await res.json(); */
       /*  const myHeaders = new Headers();
             myHeaders.append('Authorization', 'Bearer ' + token);
             const list = await fetch('', {
