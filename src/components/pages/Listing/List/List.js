@@ -6,6 +6,7 @@ import Result from "../Result/Results";
 import ModalForm from "../../../common/ModalForm/ModalForm.js";
 import Thead from "../Thead/Thead.js";
 import Filters from "../Filters/Filters.js";
+import ModalFormContainer from "../../../../redux/containers/components/ModalFormContainer.js";
 
 export default function List({ whichView, properties }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -81,7 +82,7 @@ export default function List({ whichView, properties }) {
           </tbody>
         </Table>
       </div>
-      <ModalForm
+      <ModalFormContainer
         isModalFormOpen={modalOpen}
         handleModalToggle={handleToggleModalOpen}
       />
