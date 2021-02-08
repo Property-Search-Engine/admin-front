@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "./components/pages/Dashboard/Dashboard";
 import ROUTES from "./utils/routes";
@@ -8,14 +8,10 @@ import Settings from "./components/pages/Settings/Settings";
 import PropertyDetailsContainer from "./redux/containers/pages/PropertyDetailsContainer";
 import ListingContainer from "./redux/containers/pages/ListingContainer";
 
-function App({ fetchlistProperties }) {
-  useEffect(() => {
-    fetchlistProperties();
-  }, []);
-
+function App() {
   return (
     <Switch>
-      <Route path={ROUTES.LOGIN}>
+      <Route path={ROUTES.LOGIN} exact>
         <LoginContainer />
       </Route>
       <Route

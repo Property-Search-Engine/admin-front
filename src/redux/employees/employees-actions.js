@@ -72,7 +72,7 @@ export function createEmployee({
         },
         currentUserToken
       );
-      dispatch(createEmployeeSuccess(newEmployee));
+      dispatch(createEmployeeSuccess(newEmployee.data));
     } catch (error) {
       dispatch(createEmployeeError(error.message));
     }
