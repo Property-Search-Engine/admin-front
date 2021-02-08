@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://property-search-admin-server.herokuapp.com";
 
 const userEndpoint = BASE_URL + "/user";
 const propertiesEndpoint = BASE_URL + "/properties";

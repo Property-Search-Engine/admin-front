@@ -59,8 +59,6 @@ export function login(email, password) {
       const token = await auth.currentUser.getIdToken();
 
       const loggedInUser = await gatherUserInfoByToken(token);
-      console.log(loggedInUser);
-      console.log(res);
       dispatch(loginSuccess(loggedInUser, token));
     } catch (error) {
       dispatch(loginError(error.message));

@@ -41,39 +41,32 @@ export const listPropertiesError = (message) => ({
   payload: message,
 });
 //* Action passed to component
-export const listProperties = (filters = { kind: "home" }) => {
+export const listProperties = (filters = { kind: "Home" }) => {
   return async function listPropertiesThunk(dispatch) {
     //We info and change state to have lastRequest as LIST_PROPERTIES
     dispatch(listPropertiesRequest());
     try {
       const currentUserToken = await auth.currentUser.getIdToken();
       const AuthHeader = authHeader(currentUserToken);
-      const formData = createFormData(filters);
-      //TODO fetch to properties by filters get endpoint
-      const res = await fetch(finalEndpoints.getPropertiesList, {
+      //TODO Buil url with filters
+      const res = await fetch(finalEndpoints.getPropertiesList + "?kind=Home", {
         headers: AuthHeader,
       });
-      /* const list = await res.json(); */
-      /*  const myHeaders = new Headers();
-            myHeaders.append('Authorization', 'Bearer ' + token);
-            const list = await fetch('', {
-                headers: myHeaders,
-              }); */
+      const list = await res.json();
       dispatch({
         type: PropertiesTypes.LIST_PROPERTIES_SUCCESS,
-        payload: [propertyEx, propertyEx2],
+        payload: list.data,
       });
     } catch (error) {
       dispatch(listPropertiesError(error.message));
     }
   };
 };
-
 export const createPropertyRequest = () => ({
   type: PropertiesTypes.CREATE_PROPERTY_REQUEST,
 });
 export const createPropertyError = (message) => ({
-  type: PropertiesTypes.DELETE_PROPERTY_ERROR,
+  type: PropertiesTypes.CREATE_PROPERTY_ERROR,
   payload: message,
 });
 export const createPropertySuccess = (newProperty) => ({
@@ -88,8 +81,9 @@ export function createProperty(newPropertyObj) {
 
     try {
       //Storage in firebase to have urls back
-      const imagesBufferObj = newPropertyObj.images;
       const arrayOfImagesUrl = [];
+      const imagesBufferObj = newPropertyObj.images;
+      const inputsToReorder = ["street", "number", "state", "country", "city"];
       Object.values(imagesBufferObj).forEach(async (file) => {
         const uploadTask = await firebaseStorage
           .ref(`/images/${file.name}`)
@@ -100,24 +94,47 @@ export function createProperty(newPropertyObj) {
           .getDownloadURL();
         arrayOfImagesUrl.push(imgUrl);
       });
+
       newPropertyObj.images = arrayOfImagesUrl;
-      newPropertyObj.surface = newPropertyObj.m2;
+      newPropertyObj.address = {};
+      Object.entries(newPropertyObj).forEach(([inputName, inputValue]) => {
+        if (inputsToReorder.some((input) => input === inputName)) {
+          newPropertyObj.address[inputName] = inputValue;
+          delete newPropertyObj[inputName];
+        }
+        if (inputName === "sold") {
+          inputValue === "Available"
+            ? (newPropertyObj.sold = false)
+            : (newPropertyObj.sold = true);
+        }
+      });
       //Get firebase auth token with the started instance of firebase when logged in
       const currentUserToken = await auth.currentUser.getIdToken();
 
       //Connect with our server
       const formData = createFormData(newPropertyObj);
       const AuthHeader = authHeader(currentUserToken);
-
+      console.log(newPropertyObj);
       var newProperty = await fetch(finalEndpoints.createProperty, {
         method: "POST",
-        body: formData,
+        body: JSON.stringify(newPropertyObj),
         headers: AuthHeader,
       });
-
-      dispatch(createPropertySuccess(newProperty.data));
+      console.log(newProperty);
+      newProperty.ok
+        ? dispatch(createPropertySuccess(newProperty.data))
+        : dispatch(createPropertyError(newProperty.message));
     } catch (error) {
-      dispatch(createPropertyError(error.message));
+      dispatch(createPropertyError(newProperty.message));
     }
   };
 }
+
+export const updatePropertiesFilters = (filterName, filterValue) => {
+  return async function createPropertyThunk(dispatch) {
+    dispatch({
+      type: PropertiesTypes.UPDATE_PROPERTIES_FILTERS,
+      payload: [filterName, filterValue],
+    });
+  };
+};
