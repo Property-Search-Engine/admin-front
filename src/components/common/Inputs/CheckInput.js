@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Image } from "react-bootstrap";
 
 import { toCamelCase } from "../../../utils/helpers";
@@ -14,9 +14,13 @@ function RadioInputs(props) {
   } = props;
 
   const [checked, setChecked] = useState([]);
+  const [firstCall, setFirstCall] = useState(1);
 
   useEffect(() => {
-    onChange(inputsName, checked);
+    if (firstCall !== 1) {
+      onChange(inputsName, checked);
+    }
+    setFirstCall(firstCall + 1);
   }, [checked]);
 
   const handleChange = (e) =>

@@ -60,5 +60,6 @@ export const createFormData = (objToForm) => {
 export const authHeader = (currentUserToken) => {
   const header = new Headers();
   header.append("Authorization", "Bearer " + currentUserToken);
+  header.append("Content-Type", "application/json");
   return header;
 };

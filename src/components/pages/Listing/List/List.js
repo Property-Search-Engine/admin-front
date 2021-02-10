@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Table, Image, Button } from "react-bootstrap";
 import ListingRowContainer from "../ListingRowContainer/ListingRowContainer.js";
@@ -22,11 +22,10 @@ export default function List({
     "Add as sold",
     "Remove",
   ];
-
   function handleToggleModalOpen() {
-    modalOpen ? setModalOpen(false) : setModalOpen(true);
+    modalOpen && fetchlistProperties(filters);
+    setModalOpen(!modalOpen);
   }
-
   function handleClick(e) {
     e.preventDefault();
     e.target.id === "homeKindFilter"
@@ -36,26 +35,31 @@ export default function List({
   }
   return (
     <div className="detailsContainer">
-      {whichView !== "noFilters" && <p>You selected {filters.kind}</p>}
-      <div>Which kind of property you want to index?</div>
-      <div>
-        <Button
-          variant="primary"
-          id="homeKindFilter"
-          onClick={handleClick}
-          className="d-inline"
-        >
-          Home
-        </Button>
-        <Button
-          variant="secondary"
-          id="officeKindFilter"
-          onClick={handleClick}
-          className="d-inline"
-        >
-          Office
-        </Button>
-      </div>
+      {whichView === "listing" && <p>You selected {filters.kind}</p>}
+      {whichView !== "details" && (
+        <>
+          <div>Which kind of property you want to index?</div>
+          <div>
+            <Button
+              variant="primary"
+              id="homeKindFilter"
+              onClick={handleClick}
+              className="d-inline"
+            >
+              Home
+            </Button>
+            <Button
+              variant="secondary"
+              id="officeKindFilter"
+              onClick={handleClick}
+              className="d-inline"
+            >
+              Office
+            </Button>
+          </div>
+        </>
+      )}
+
       {whichView !== "noFilters" && (
         <>
           {whichView === "listing" && (
@@ -105,7 +109,6 @@ export default function List({
                 </tr>
               </thead>
               <tbody>
-                {/* {objetoQueDevuelva.map(obj => <ListingRowContainer whichView={whichView} property={obj}/> )} */}
                 {properties.map((property, i) => (
                   <ListingRowContainer
                     key={`list-row-${i}`}
