@@ -8,6 +8,7 @@ export const finalEndpoints = {
   deleteEmployee: userEndpoint + "/",
   employeesList: userEndpoint + "/",
   getPropertiesList: propertiesEndpoint + "/",
+  deleteProperty: propertiesEndpoint + "/", //* DELETE WITH ID Param
   createProperty: propertiesEndpoint + "/", //* METHOD POST
   getPropertyById: propertiesEndpoint + "/", //* To add as param propertyId
 };

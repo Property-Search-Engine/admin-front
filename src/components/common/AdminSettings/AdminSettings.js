@@ -5,9 +5,7 @@ import ROUTES from "../../../utils/routes";
 import { Redirect } from "react-router-dom";
 
 export default function AdminSettings(props) {
-  const [isSignOut, setisSignOut] = useState(false);
-
-  const { currentUser, signout } = props;
+  const { currentUser, signout, isSignOut } = props;
 
   if (isSignOut || currentUser.token === null) {
     return <Redirect to={ROUTES.LOGIN} />;
@@ -16,7 +14,6 @@ export default function AdminSettings(props) {
   function handleClick(e) {
     e.preventDefault();
     signout();
-    setisSignOut(true);
   }
 
   return (

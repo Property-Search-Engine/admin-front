@@ -5,6 +5,7 @@ export const UserInitialState = {
   loginError: null,
   isAuthenticated: false,
   isSigningOut: false,
+  isSignOut: true,
   signOutError: null,
   isCreatingEmployee: false,
   currentUser: {
@@ -31,6 +32,7 @@ const UserReducer = (state = UserInitialState, action) => {
         isAuthenticated: true,
         isLoggingIn: false,
         loginError: null,
+        isSignOut: false,
         currentUser: {
           firstname: action.payload.firstname,
           lastname: action.payload.lastname,
@@ -67,6 +69,7 @@ const UserReducer = (state = UserInitialState, action) => {
         ...state,
         isSigningOut: false,
         signOutError: null,
+        isSignOut: true,
         isAuthenticated: false,
         currentUser: {
           firstname: null,

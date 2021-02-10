@@ -11,6 +11,7 @@ export const PropertiesInitialState = {
   lastEditedProperty: null,
   userStatistics: null,
   loading: false,
+  deletedPropertySucces: null,
   filters: {
     kind: "",
     homeType: [],
@@ -31,7 +32,6 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
     case PropertiesTypes.LIST_PROPERTIES_REQUEST:
     case PropertiesTypes.CREATE_PROPERTY_REQUEST:
     case PropertiesTypes.EDIT_PROPERTY_REQUEST:
-    case PropertiesTypes.DELETE_PROPERTY_REQUEST:
     case PropertiesTypes.DETAIL_PROPERTY_REQUEST: {
       return {
         ...state,
@@ -97,6 +97,23 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
         ...state,
         filters: { ...state.filters, [filterName]: filterValue },
         success: "updated filters to:" + action.payload,
+      };
+    }
+    case PropertiesTypes.DELETE_PROPERTY_REQUEST: {
+      return {
+        ...state,
+        lastRequest: action.type,
+        deletedPropertySucces: null,
+        loading: true,
+      };
+    }
+    case PropertiesTypes.DELETE_PROPERTY_SUCCESS: {
+      return {
+        ...state,
+        success: state.lastRequest + " was successful",
+        error: null,
+        deletedPropertySucces: action.payload,
+        loading: false,
       };
     }
     default: {

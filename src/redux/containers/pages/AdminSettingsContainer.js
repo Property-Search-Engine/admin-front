@@ -5,11 +5,12 @@ import AdminSettings from "../../../components/common/AdminSettings/AdminSetting
 const mapStateToProps = (finalState) => {
   return {
     currentUser: finalState.userState.currentUser,
+    isSignOut: finalState.userState.isSignOut,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  signout: () => dispatch(signout),
+  signout: () => dispatch(signout()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminSettings);

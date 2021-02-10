@@ -6,7 +6,10 @@ import { login, signout } from "../../user/user-actions";
 import Login from "../../../components/pages/Login/Login";
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user,
+  currentUser: state.userState.currentUser,
+  isLoggingIn: state.userState.isLoggingIn,
+  isAuthenticated: state.userState.isAuthenticated,
+  loginError: state.userState.loginError,
 });
 
 const mapDispatchToProps = (dispatch) => ({

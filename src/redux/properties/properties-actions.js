@@ -4,58 +4,6 @@ import { finalEndpoints } from "../../utils/endpoints";
 import { authHeader } from "../../utils/helpers";
 
 //======================================
-//===== Fetching property details
-//======================================
-export const propertyDetailsError = (message) => ({
-  type: PropertiesTypes.DETAIL_PROPERTY_ERROR,
-  payload: message,
-});
-export const propertyDetailsRequest = () => {
-  return { type: PropertiesTypes.DETAIL_PROPERTY_REQUEST };
-};
-//* Action passed to component
-export const propertyDetails = (id) => {
-  return async function propertyDetailsThunk(dispatch) {
-    dispatch(propertyDetailsRequest());
-    try {
-      const property = await getPropertyById(id);
-      if (property) {
-        dispatch({
-          type: PropertiesTypes.DETAIL_PROPERTY_SUCCESS,
-          payload: property,
-        });
-      } else {
-        dispatch(propertyDetailsError("Not found property"));
-      }
-    } catch (error) {
-      dispatch(propertyDetailsError(error.message));
-    }
-  };
-};
-//TODO: This has to be our own server fetch to propertyDetail endopoint
-async function getPropertyById(id) {
-  try {
-    const currentUserToken = await auth.currentUser.getIdToken();
-    const AuthHeader = authHeader(currentUserToken);
-    const responseOfOwnServer = await fetch(
-      finalEndpoints.getPropertyById + id,
-      {
-        headers: AuthHeader,
-      }
-    );
-    const property = await responseOfOwnServer.json();
-    if (property.data) {
-      return property.data;
-    } else {
-      throw new Error(
-        "Request fetching property by Id not ok. Not data object."
-      );
-    }
-  } catch (error) {
-    throw new Error(error.message);
-  }
-}
-//======================================
 //===== Fetching list of properties
 //======================================
 export const listPropertiesRequest = () => {
@@ -99,6 +47,67 @@ export const listProperties = (filters) => {
     }
   };
 };
+//======================================
+//========== Update filters
+//======================================
+export const updatePropertiesFilters = (filterName, filterValue) => {
+  return {
+    type: PropertiesTypes.UPDATE_PROPERTIES_FILTERS,
+    payload: [filterName, filterValue],
+  };
+};
+//======================================
+//===== Fetching property details
+//======================================
+export const propertyDetailsError = (message) => ({
+  type: PropertiesTypes.DETAIL_PROPERTY_ERROR,
+  payload: message,
+});
+export const propertyDetailsRequest = () => {
+  return { type: PropertiesTypes.DETAIL_PROPERTY_REQUEST };
+};
+//* Action passed to component
+export const propertyDetails = (id) => {
+  return async function propertyDetailsThunk(dispatch) {
+    dispatch(propertyDetailsRequest());
+    try {
+      const property = await getPropertyById(id);
+      if (property) {
+        dispatch({
+          type: PropertiesTypes.DETAIL_PROPERTY_SUCCESS,
+          payload: property,
+        });
+      } else {
+        dispatch(propertyDetailsError("Not found property"));
+      }
+    } catch (error) {
+      dispatch(propertyDetailsError(error.message));
+    }
+  };
+};
+
+async function getPropertyById(id) {
+  try {
+    const currentUserToken = await auth.currentUser.getIdToken();
+    const AuthHeader = authHeader(currentUserToken);
+    const responseOfOwnServer = await fetch(
+      finalEndpoints.getPropertyById + id,
+      {
+        headers: AuthHeader,
+      }
+    );
+    const property = await responseOfOwnServer.json();
+    if (property.data) {
+      return property.data;
+    } else {
+      throw new Error(
+        "Request fetching property by Id not ok. Not data object."
+      );
+    }
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
 //======================================
 //========= Create property
 //======================================
@@ -167,11 +176,33 @@ export function createProperty(newPropertyObj) {
 }
 
 //======================================
-//========== Update filters
+//========= Delete property
 //======================================
-export const updatePropertiesFilters = (filterName, filterValue) => {
-  return {
-    type: PropertiesTypes.UPDATE_PROPERTIES_FILTERS,
-    payload: [filterName, filterValue],
-  };
+export const deletePropertyRequest = () => {
+  return { type: PropertiesTypes.DELETE_PROPERTY_REQUEST };
 };
+export const deletePropertyError = (message) => ({
+  type: PropertiesTypes.DELETE_PROPERTY_ERROR,
+  payload: message,
+});
+export function deleteProperty(id) {
+  return async function deletePropertyThunk(dispatch) {
+    dispatch(deletePropertyRequest());
+    try {
+      const currentUserToken = await auth.currentUser.getIdToken();
+      const AuthHeader = authHeader(currentUserToken);
+      const responseOfOwnServer = await fetch(
+        finalEndpoints.deleteProperty + id,
+        {
+          method: "DELETE",
+          headers: AuthHeader,
+        }
+      );
+      const deletedProperty = await responseOfOwnServer.json();
+      return dispatch({
+        type: PropertiesTypes.DELETE_PROPERTY_SUCCESS,
+        payload: deletedProperty,
+      });
+    } catch (error) {}
+  };
+}

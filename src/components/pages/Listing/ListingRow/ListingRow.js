@@ -5,14 +5,28 @@ import { Redirect } from "react-router-dom";
 import { svgPath } from "../../../../utils/helpers";
 import ROUTES from "../../../../utils/routes";
 
-export default function ListingRowContainer(props) {
-  const { whichView, property } = props;
+export default function ListingRow(props) {
+  const {
+    whichView,
+    property,
+    deleteProperty,
+    filters,
+    fetchlistProperties,
+  } = props;
   const [isRowClicked, setIsRowClicked] = useState(false);
+  const [isPropertyDeleted, setIsPropertyDeleted] = useState(false);
   function handleClick(e) {
     e.preventDefault();
     whichView !== "deatils" && setIsRowClicked(true);
   }
-
+  function handleDelete(e) {
+    setIsPropertyDeleted(true);
+    deleteProperty(property._id);
+    fetchlistProperties(filters);
+  }
+  if (isPropertyDeleted) {
+    return <Redirect to={ROUTES.LISTING} />;
+  }
   if (isRowClicked) {
     return <Redirect to={"listing/" + property._id} />;
   }
@@ -65,7 +79,7 @@ export default function ListingRowContainer(props) {
         </button>
       </td>
       <td>
-        <button className="btn list">
+        <button className="btn list" onClick={handleDelete}>
           <Image className="listing-icons" src={svgPath("delete")} rounded />
         </button>
       </td>

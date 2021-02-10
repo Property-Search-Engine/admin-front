@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { Table, Image, Button } from "react-bootstrap";
-import ListingRowContainer from "../ListingRowContainer/ListingRowContainer.js";
 import Result from "../Result/Results";
 import Thead from "../Thead/Thead.js";
 import Filters from "../Filters/Filters.js";
 import ModalFormContainer from "../../../../redux/containers/components/ModalFormContainer.js";
+import ListingRowContainer from "../../../../redux/containers/components/ListingRowContainer.js";
 
 export default function List({
   whichView,
@@ -22,6 +22,7 @@ export default function List({
     "Add as sold",
     "Remove",
   ];
+
   function handleToggleModalOpen() {
     modalOpen && fetchlistProperties(filters);
     setModalOpen(!modalOpen);
@@ -33,8 +34,20 @@ export default function List({
       : updateFilters("kind", "Office");
     fetchlistProperties(filters);
   }
+  function handleClickFetch(e) {
+    e.preventDefault();
+    fetchlistProperties(filters);
+  }
   return (
     <div className="detailsContainer">
+      <Button
+        variant="primary"
+        id="homeKindFilter"
+        onClick={handleClickFetch}
+        className="d-inline"
+      >
+        RefreshList of properties
+      </Button>
       {whichView === "listing" && <p>You selected {filters.kind}</p>}
       {whichView !== "details" && (
         <>
