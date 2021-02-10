@@ -6,7 +6,7 @@ import AdminSettingsContainer from "../../../redux/containers/pages/AdminSetting
 
 export default function Header() {
   return (
-    <Navbar className="mainNav d-flex align-items-end justify-content-between">
+    <Navbar className="mainNav d-flex justify-content-between">
       <div className="fullWidth">
         <Form className="d-flex flex-row ">
           <FormControl type="text" placeholder="Search" className="halfWidth" />
