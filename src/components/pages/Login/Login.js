@@ -35,26 +35,29 @@ function Login({
   return (
     <main className="container d-flex flex-column flex-shrink-0 flex-grow-1">
       <div className="row justify-content-sm-center align-items-sm-center flex-grow-1">
-        <section className="Form col-md-8 col-xl-6 mx-sm-auto border rounded p-sm-5">
+        <section
+          className="Form col-md-8 col-xl-6 mx-sm-auto rounded p-sm-5"
+          style={{ textAlign: "center", maxWidth: "19rem", margin: "100px auto 0 0" }}
+        >
           <header>
-            <h1 className="h2 pt-5 pt-sm-2 pb-4">Iniciar sesión</h1>
+            <h1 className="h2 pt-5 pt-sm-2 pb-4">Admin Log in</h1>
           </header>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              {/* <label htmlFor="email">Email</label>*/}
               <input
                 type="email"
-                placeholder="Tu email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Contraseña</label>
+              {/*<label htmlFor="password">Contraseña</label>*/}
               <input
                 type="password"
                 id="password"
-                placeholder="Tu contraseña"
+                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -73,12 +76,9 @@ function Login({
           </form>
         </section>
       </div>
-      <Button onClick={handleSignoutClick} variant="primary">
+      {/*  <Button onClick={() => signOut()} variant="primary">
         SignOut
-      </Button>
-      <Button variant="primary">
-        <Link to={ROUTES.DASHBOARD}>DASHBOARD</Link>
-      </Button>
+      </Button> */}
     </main>
   );
 }
