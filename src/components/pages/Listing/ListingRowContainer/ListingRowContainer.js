@@ -10,7 +10,7 @@ export default function ListingRowContainer(props) {
   const [isRowClicked, setIsRowClicked] = useState(false);
   function handleClick(e) {
     e.preventDefault();
-    setIsRowClicked(true);
+    whichView !== "deatils" && setIsRowClicked(true);
   }
 
   if (isRowClicked) {
