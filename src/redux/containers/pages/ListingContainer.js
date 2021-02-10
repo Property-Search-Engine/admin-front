@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
   return {
     propertiesList: state.propertiesState.propertiesList,
     loading: state.propertiesState.loading,
+    filters: state.propertiesState.filters,
   };
 };
 

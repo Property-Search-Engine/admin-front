@@ -4,23 +4,30 @@ import Sidebar from "../../common/Sidebar/Sidebar";
 import ImageCarousel from "../Listing/ImageCarousel/ImageCarousel";
 import ExtraPropertyDetails from "./ExtraPropertyDetails/ExtraPropertyDetails";
 import List from "../Listing/List/List";
-import { Spinner } from "react-bootstrap";
+import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 
 export default function PropertyDetails({
   id,
   fetchPropertyDetails,
   property,
+  loading,
+  filters,
 }) {
   useEffect(() => {
-    fetchPropertyDetails(id);
+    if (property === null) {
+      fetchPropertyDetails(id);
+    }
   }, []);
+  useEffect(() => {
+    fetchPropertyDetails(id);
+  }, [id]);
   return (
     <main className="d-flex flex">
       <Sidebar active="listing" />
       <div className="mainContainer">
         <Header />
-        {property === null ? (
-          <Spinner />
+        {property === null || loading ? (
+          <LoadingSpinner />
         ) : (
           <>
             <List whichView="details" properties={[property]} />

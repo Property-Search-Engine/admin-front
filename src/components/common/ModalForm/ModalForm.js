@@ -18,10 +18,10 @@ function ModalForm(props) {
     "Lift",
     "Garden",
     "Air Conditioning",
-    "Pool",
+    "Swimming",
     "Terrace",
   ];
-  const statusOptions = ["Available", "Sold"];
+  const soldOptions = ["Available", "Sold"];
   const equipmentOptions = {
     full: "Fully furnished",
     partial: "Partial furnished",
@@ -39,15 +39,14 @@ function ModalForm(props) {
       city: "",
       state: "",
       country: "",
-      status: getDefaultOptions(statusOptions),
-      type: getDefaultOptions(typeOptions),
+      sold: getDefaultOptions(soldOptions),
+      homeType: getDefaultOptions(typeOptions),
       condition: toCamelCase(conditionOptions[0]),
       equipment: "full",
       price: "",
-      bedroom: 1,
-      bath: 1,
-      m2: 1,
-      date: "",
+      bedRooms: 1,
+      bathRooms: 1,
+      surface: 1,
       filters: [],
       description: "",
       images: {},
@@ -61,22 +60,20 @@ function ModalForm(props) {
     city,
     state,
     country,
-    status,
-    type,
+    sold,
+    homeType,
     condition,
     equipment,
     price,
-    bedroom,
-    bath,
-    m2,
-    date,
+    bedRooms,
+    bathRooms,
+    surface,
     filters,
     description,
     images,
   } = formData;
   const [imagesInputValue, setImagesInputValue] = useState("");
   const handleInputChange = (inputName, inputValue) => {
-    console.log(inputValue);
     setFormData({ ...formData, [inputName]: inputValue });
   };
 
@@ -153,20 +150,20 @@ function ModalForm(props) {
               value={country}
             />
             <RadioInputs
-              options={statusOptions}
-              inputsName="status"
+              options={soldOptions}
+              inputsName="sold"
               labelText="Status"
               labelImgSrc={svgPath("tagblue")}
               onChange={handleInputChange}
-              value={status}
+              value={sold}
             />
             <RadioInputs
               options={typeOptions}
-              inputsName="type"
+              inputsName="homeType"
               labelText="Type of property"
               labelImgSrc={svgPath("tagblue")}
               onChange={handleInputChange}
-              value={type}
+              value={homeType}
             />
             <RadioInputs
               options={conditionOptions}
@@ -203,34 +200,24 @@ function ModalForm(props) {
             </p>
             <div className="input-container-number">
               <NumberInput
-                inputName="bedroom"
+                inputName="bedRooms"
                 labelContent={{ type: "image", content: svgPath("bed") }}
                 onChange={handleInputChange}
-                value={bedroom}
+                value={bedRooms}
               />
               <NumberInput
-                inputName="bath"
+                inputName="bathRooms"
                 labelContent={{ type: "image", content: svgPath("bath") }}
                 onChange={handleInputChange}
-                value={bath}
+                value={bathRooms}
               />
               <NumberInput
-                inputName="m2"
+                inputName="surface"
                 labelContent={{ type: "image", content: svgPath("m2") }}
                 onChange={handleInputChange}
-                value={m2}
+                value={surface}
               />
             </div>
-            <DateInput
-              inputName="date"
-              labelText="Publication date"
-              placeholder={new Date().toLocaleString("en-GB", {
-                timeZone: "UTC",
-              })}
-              labelImgSrc={svgPath("tagblue")}
-              onChange={handleInputChange}
-              value={date}
-            />
             <CheckInput
               options={filterOptions}
               labelText="More Filters"
@@ -261,7 +248,7 @@ function ModalForm(props) {
               </Form.Label>
               <input
                 type="file"
-                inputName="images"
+                name="images"
                 value={imagesInputValue}
                 multiple
                 onChange={(e) => {

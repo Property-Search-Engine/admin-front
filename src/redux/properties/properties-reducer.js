@@ -11,6 +11,17 @@ export const PropertiesInitialState = {
   lastEditedProperty: null,
   userStatistics: null,
   loading: false,
+  filters: {
+    kind: "",
+    homeType: [],
+    bedRooms: [],
+    bathRooms: [],
+    equipment: "null",
+    publication: "null",
+    filters: [],
+    condition: [],
+    range: { max: 0, min: 0 },
+  },
 };
 
 //@param state is store state in every moment
@@ -38,12 +49,14 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
         error: "Failed " + state.lastRequest,
         loading: false,
         lastRequestErrorMessage: action.payload,
+        success: null,
       };
     }
     case PropertiesTypes.LIST_PROPERTIES_SUCCESS: {
       return {
         ...state,
         success: state.lastRequest + " was successful",
+        error: null,
         loading: false,
         propertiesList: action.payload, //action.payload is list of properties
       };
@@ -56,6 +69,8 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
           action.payload,
         ],
         loading: false,
+        error: null,
+        success: state.lastRequest + " was successful",
       };
     }
     case PropertiesTypes.EDIT_PROPERTY_SUCCESS: {
@@ -63,6 +78,7 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
         ...state,
         success: state.lastRequest + " was successful",
         lastEditedProperty: action.payload,
+        error: null,
       };
     }
     case PropertiesTypes.DETAIL_PROPERTY_SUCCESS: {
@@ -70,6 +86,17 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
         ...state,
         singlePropertyDetails: action.payload,
         loading: false,
+        error: null,
+        success: state.lastRequest + " was successful",
+      };
+    }
+    case PropertiesTypes.UPDATE_PROPERTIES_FILTERS: {
+      const filterName = action.payload[0];
+      const filterValue = action.payload[1];
+      return {
+        ...state,
+        filters: { ...state.filters, [filterName]: filterValue },
+        success: "updated filters to:" + action.payload,
       };
     }
     default: {
