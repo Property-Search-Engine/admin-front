@@ -11,4 +11,5 @@ export const finalEndpoints = {
   deleteProperty: propertiesEndpoint + "/", //* DELETE WITH ID Param
   createProperty: propertiesEndpoint + "/", //* METHOD POST
   getPropertyById: propertiesEndpoint + "/", //* To add as param propertyId
+  markPropertyAsSold: propertiesEndpoint + "/", //* Add property Id and then /sold
 };

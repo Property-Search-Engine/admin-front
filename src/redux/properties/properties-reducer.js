@@ -12,6 +12,7 @@ export const PropertiesInitialState = {
   userStatistics: null,
   loading: false,
   deletedPropertySucces: null,
+  markAsSoldSuccess: null,
   filters: {
     kind: "",
     homeType: [],
@@ -43,7 +44,8 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
     case PropertiesTypes.CREATE_PROPERTY_ERROR:
     case PropertiesTypes.EDIT_PROPERTY_ERROR:
     case PropertiesTypes.DELETE_PROPERTY_ERROR:
-    case PropertiesTypes.DETAIL_PROPERTY_ERROR: {
+    case PropertiesTypes.DETAIL_PROPERTY_ERROR:
+    case PropertiesTypes.MARK_AS_SOLD_ERROR: {
       return {
         ...state,
         error: "Failed " + state.lastRequest,
@@ -113,6 +115,23 @@ const PropertiesReducer = (state = PropertiesInitialState, action) => {
         success: state.lastRequest + " was successful",
         error: null,
         deletedPropertySucces: action.payload,
+        loading: false,
+      };
+    }
+    case PropertiesTypes.MARK_AS_SOLD_REQUEST: {
+      return {
+        ...state,
+        lastRequest: action.type,
+        markAsSoldSuccess: null,
+        loading: true,
+      };
+    }
+    case PropertiesTypes.MARK_AS_SOLD_SUCCESS: {
+      return {
+        ...state,
+        success: state.lastRequest + " was successful",
+        error: null,
+        markAsSoldSuccess: action.payload,
         loading: false,
       };
     }

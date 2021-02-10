@@ -203,6 +203,42 @@ export function deleteProperty(id) {
         type: PropertiesTypes.DELETE_PROPERTY_SUCCESS,
         payload: deletedProperty,
       });
-    } catch (error) {}
+    } catch (error) {
+      dispatch(deletePropertyError(error.message));
+    }
+  };
+}
+
+//======================================
+//========= Delete property
+//======================================
+export const markAsSoldRequest = () => {
+  return { type: PropertiesTypes.MARK_AS_SOLD_REQUEST };
+};
+export const markAsSoldError = (message) => ({
+  type: PropertiesTypes.MARK_AS_SOLD_ERROR,
+  payload: message,
+});
+export function markAsSold(id) {
+  return async function markAsSold(dispatch) {
+    dispatch(markAsSoldRequest());
+    try {
+      const currentUserToken = await auth.currentUser.getIdToken();
+      const AuthHeader = authHeader(currentUserToken);
+      const responseOfOwnServer = await fetch(
+        finalEndpoints.markPropertyAsSold + id + "/sold",
+        {
+          method: "PATCH",
+          headers: AuthHeader,
+        }
+      );
+      const markedPropertyResponse = await responseOfOwnServer.json();
+      return dispatch({
+        type: PropertiesTypes.DELETE_PROPERTY_SUCCESS,
+        payload: markedPropertyResponse,
+      });
+    } catch (error) {
+      dispatch(markAsSoldError(error.message));
+    }
   };
 }

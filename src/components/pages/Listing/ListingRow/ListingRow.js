@@ -12,6 +12,7 @@ export default function ListingRow(props) {
     deleteProperty,
     filters,
     fetchlistProperties,
+    markAsSold,
   } = props;
   const [isRowClicked, setIsRowClicked] = useState(false);
   const [isPropertyDeleted, setIsPropertyDeleted] = useState(false);
@@ -23,6 +24,10 @@ export default function ListingRow(props) {
     setIsPropertyDeleted(true);
     deleteProperty(property._id);
     fetchlistProperties(filters);
+  }
+  function HandleSoldClick(e) {
+    e.preventDefault();
+    markAsSold(property._id);
   }
   if (isPropertyDeleted) {
     return <Redirect to={ROUTES.LISTING} />;
@@ -73,6 +78,7 @@ export default function ListingRow(props) {
         <button className="btn list">
           <Image
             className="listing-icons sold"
+            onClick={HandleSoldClick}
             src={svgPath(property.sold ? "sold-active" : "sold")}
             rounded
           />
