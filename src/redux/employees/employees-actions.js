@@ -1,9 +1,5 @@
 import EmployeesTypes from "./employees-types";
-import {
-  singInWithGoogle,
-  singInWithEmailAndPassword,
-  auth,
-} from "../../firebase/firebase";
+import { auth } from "../../firebase/firebase";
 import { finalEndpoints } from "../../utils/endpoints";
 import { createFormData, authHeader } from "../../utils/helpers";
 
@@ -22,15 +18,15 @@ export const createEmployeeSuccess = (newEmployee) => ({
   type: EmployeesTypes.CREATE_EMPLOYEE_SUCCESS,
   payload: newEmployee,
 });
-async function signUpInOwnServer(newEmployee, currentEmployeesToken) {
-  const formData = createFormData(newEmployee);
+async function signUpInOwnServer(newEmployeeObj, currentEmployeesToken) {
   const AuthHeader = new Headers();
   AuthHeader.append("Authorization", "Bearer " + currentEmployeesToken);
-
+  AuthHeader.append("Content-Type", "application/json");
+  newEmployeeObj.phone = String(newEmployeeObj.phone);
   try {
     const res = await fetch(finalEndpoints.register, {
       method: "POST",
-      body: formData,
+      body: JSON.stringify(newEmployeeObj),
       headers: AuthHeader,
     });
     const newEmployee = await res.json();
@@ -51,13 +47,6 @@ export function createEmployee({
   return async function createEmployeeThunk(dispatch) {
     dispatch(createEmployeeRequest());
     try {
-      //Firebase signUp
-      /*  if (email && password) {
-        await singInWithEmailAndPassword(email, password);
-      } else {
-        await singInWithGoogle();
-      } */
-
       //Get firebase auth token with the started instance of firebase when logged in
       const currentUserToken = await auth.currentUser.getIdToken();
 
@@ -72,7 +61,7 @@ export function createEmployee({
         },
         currentUserToken
       );
-      dispatch(createEmployeeSuccess(newEmployee.data));
+      dispatch(createEmployeeSuccess(newEmployee));
     } catch (error) {
       dispatch(createEmployeeError(error.message));
     }
