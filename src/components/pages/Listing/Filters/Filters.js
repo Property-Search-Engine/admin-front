@@ -7,20 +7,11 @@ import DoubleRangeSlider from "../RangeSlider/RangeSlider";
 
 export default function Filters(props) {
   const [open, setOpen] = useState(false);
-  const [filters, setFilters] = useState({
-    type: [],
-    bedrooms: [],
-    bathrooms: [],
-    equipment: "null",
-    publication: "null",
-    filters: [],
-    condition: [],
-    range: "",
-  });
-  const { formData = {} } = props;
+
+  const { setFilters, filters } = props;
 
   function handleFilterChange(filterKey, filterValue) {
-    setFilters({ ...filters, [filterKey]: filterValue });
+    setFilters(filterKey, filterValue);
   }
   return (
     <>
@@ -30,9 +21,9 @@ export default function Filters(props) {
             <CheckInputs
               options={["Flat/Department", "House", "Duplex", "Penthouse"]}
               labelText="Type of home"
-              inputsName="type"
+              inputsName="homeType"
               onChange={handleFilterChange}
-              values={filters.type}
+              values={filters.homeType}
             />
 
             <div className="filtersColumn">
@@ -43,10 +34,11 @@ export default function Filters(props) {
                 rounded
                 className="form-icon-label"
               />
-              <GroupButtons className="filters-btn"
+              <GroupButtons
+                className="filters-btn"
                 handleChange={handleFilterChange}
-                filterKey="bedrooms"
-                clicked={filters.bedrooms}
+                filterKey="bedRooms"
+                clicked={filters.bedRooms}
                 buttons={{
                   0: "0 (Studio Flat)",
                   1: "1",
@@ -67,8 +59,8 @@ export default function Filters(props) {
               <div className="bedroomsCol">
                 <GroupButtons
                   handleChange={handleFilterChange}
-                  filterKey="bedrooms"
-                  clicked={filters.bedrooms}
+                  filterKey="bathRooms"
+                  clicked={filters.bathRooms}
                   buttons={{
                     1: "1",
                     2: "2",
@@ -119,18 +111,6 @@ export default function Filters(props) {
                 onChange={handleFilterChange}
                 value={filters.publication}
               />
-
-              {/* <Form.Control name="publication" as="select" custom>
-                <option value="24" selected="">
-                  Last 24 hours
-                </option>
-                <option value="week" selected="">
-                  Last week
-                </option>
-                <option value="month" selected="">
-                  Last month
-                </option>
-              </Form.Control> */}
             </div>
             <div className="filtersColumn">
               <CheckInputs
@@ -155,7 +135,10 @@ export default function Filters(props) {
         <a
           className="listingAddNew"
           href="#"
-          onClick={() => setOpen(!open)}
+          onClick={(e) => {
+            e.preventDefault();
+            setOpen(!open);
+          }}
           aria-controls="example-collapse-text"
           aria-expanded={open}
         >

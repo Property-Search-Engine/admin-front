@@ -1,21 +1,29 @@
 import { connect } from "react-redux";
 
-/* import { currentUserStateSelector } from "../../user/user-selectors"; */
-import { listProperties } from "../../properties/properties-actions";
+import {
+  listProperties,
+  updatePropertiesFilters,
+} from "../../properties/properties-actions";
 
 import List from "../../../components/pages/Listing/List/List";
 
 //Pass the properties state to be accessible by the component
 const mapStateToProps = (state, ownProps) => {
   return {
-    propertiesList: state.properties,
     whichView: ownProps.whichView,
+    properties: state.propertiesState.propertiesList,
+    loading: state.propertiesState.loading,
+    filters: state.propertiesState.filters,
   };
 };
 
 //Pass the actions functions to be accessible by the component
-const mapDispatchToProps = (dispatch) => ({
-  fetchlistProperties: () => dispatch(listProperties()),
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchlistProperties: () => dispatch(listProperties()),
+    updateFilters: (filterName, filterValue) =>
+      dispatch(updatePropertiesFilters(filterName, filterValue)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

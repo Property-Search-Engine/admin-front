@@ -8,7 +8,8 @@
   padding-left: 20px;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="number"] {
   background-color: $searchBar-grey;
   border: none;
 }

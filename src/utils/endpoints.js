@@ -1,7 +1,13 @@
-export const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://property-search-admin-server.herokuapp.com";
 
-export const userEndpoint = "/user";
+const userEndpoint = BASE_URL + "/user";
+const propertiesEndpoint = BASE_URL + "/properties";
 export const finalEndpoints = {
-  register: BASE_URL + userEndpoint + "/register",
-  login: BASE_URL + userEndpoint + "/login",
+  register: userEndpoint + "/register",
+  login: userEndpoint + "/login",
+  deleteEmployee: userEndpoint + "/",
+  employeesList: userEndpoint + "/",
+  getPropertiesList: propertiesEndpoint + "/",
+  createProperty: propertiesEndpoint + "/", //* METHOD POST
+  getPropertyById: propertiesEndpoint + "/", //* To add as param propertyId
 };

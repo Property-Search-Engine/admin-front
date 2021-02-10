@@ -1,17 +1,35 @@
-import React from "react";
-import { DropdownButton, Dropdown, ButtonGroup, Image } from "react-bootstrap";
+import React, { useState } from "react";
+import { Dropdown, Image } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
+import ROUTES from "../../../utils/routes";
+import { Redirect } from "react-router-dom";
 
-export default function AdminSettings() {
+export default function AdminSettings(props) {
+  const [isSignOut, setisSignOut] = useState(false);
+
+  const { currentUser, signout } = props;
+
+  if (isSignOut || currentUser.token === null) {
+    return <Redirect to={ROUTES.LOGIN} />;
+  }
+
+  function handleClick(e) {
+    e.preventDefault();
+    signout();
+    setisSignOut(true);
+  }
+
   return (
     <div className="d-flex flex-row">
-      <Image
+      {/* <Image
         src="/assets/testing_images/IMG_7429.jpg"
         className="notification-icon btn-circle"
-      />
+      /> */}
       <Dropdown className="main-btn">
         <button className="dropdown-btn-overlay">
-          Cris Garcia{" "}
+          {currentUser
+            ? `${currentUser.firstname} ${currentUser.lastname}`
+            : "Not user own server connection working"}
           <span>
             {" "}
             <Image
@@ -30,7 +48,7 @@ export default function AdminSettings() {
         <DropdownMenu>
           <Dropdown.Item href="">Profile</Dropdown.Item>
           <Dropdown.Item href="/settings">Settings</Dropdown.Item>
-          <Dropdown.Item href="/logOut">Log Out</Dropdown.Item>
+          <Dropdown.Item onClick={handleClick}>Log Out</Dropdown.Item>
         </DropdownMenu>
       </Dropdown>
     </div>

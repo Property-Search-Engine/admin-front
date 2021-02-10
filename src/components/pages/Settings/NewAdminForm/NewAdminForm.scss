@@ -5,6 +5,7 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   width: 30%;
+  border: 1px solid $primary-blue;
 }
 
 .heading h6 {
@@ -12,5 +13,23 @@
 }
 
 .submitNewAdmin {
-  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  button {
+    width: 100%;
+    background-color: $primary-orange;
+    border: none;
+    color: $primary-grey;
+  }
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"] {
+  background-color: $searchBar-grey;
+  border: none;
+}
+
+.errorMessage {
+  color: red;
 }

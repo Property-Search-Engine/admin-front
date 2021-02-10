@@ -2,7 +2,7 @@ import UserTypes from "./user-types";
 import {
   singInWithGoogle,
   singInWithEmailAndPassword,
-  signOut,
+  firebaseSignout,
   auth,
 } from "../../firebase/firebase";
 import { finalEndpoints } from "../../utils/endpoints";
@@ -31,25 +31,6 @@ export const loginSuccess = ({ firstname, lastname, email, phone }, token) => ({
   },
 });
 
-export const signUpRequest = () => ({
-  type: UserTypes.SIGNUP_REQUEST,
-});
-
-export const signUpError = (message) => ({
-  type: UserTypes.SIGNUP_ERROR,
-  payload: message,
-});
-
-export const signupSuccess = ({ name, lastname, email, token }) => ({
-  type: UserTypes.SIGNUP_SUCCESS,
-  payload: {
-    name: name,
-    lastname: lastname,
-    email: email,
-    token: token,
-  },
-});
-
 export const signoutRequest = () => ({
   type: UserTypes.SIGNOUT_REQUEST,
 });
@@ -63,34 +44,7 @@ export const signoutSuccess = () => ({
   type: UserTypes.SIGNOUT_SUCCESS,
 });
 
-export function signUp({ firstname, lastname, phone, email, password }) {
-  return async function signUpThunk(dispatch) {
-    dispatch(signUpRequest());
-
-    //Firebase signUp
-    let res;
-    if (email && password) {
-      res = await singInWithEmailAndPassword(email, password);
-    } else {
-      res = await singInWithGoogle();
-    }
-
-    //Connect with our server
-    if (res.ok) {
-      try {
-        // var newUser = await signUpInOwnServer(name, lastname, phone, token);
-        //new User --> { name, lastname, email, token }
-        // dispatch(signupSuccess(newUser));
-      } catch (error) {
-        dispatch(signUpError(error.message));
-      }
-    } else {
-      dispatch(signUpError(res.message));
-    }
-  };
-}
-
-export function login({ email, password }) {
+export function login(email, password) {
   return async function loginThunk(dispatch) {
     dispatch(loginRequest());
 
@@ -101,24 +55,23 @@ export function login({ email, password }) {
       } else {
         res = await singInWithGoogle();
       }
-
       //Use auth class from firebase to get token
       const token = await auth.currentUser.getIdToken();
 
-      const userCredentials = await gatherInfoByToken(token);
-      dispatch(loginSuccess(userCredentials, token));
+      const loggedInUser = await gatherUserInfoByToken(token);
+      dispatch(loginSuccess(loggedInUser, token));
     } catch (error) {
       dispatch(loginError(error.message));
     }
   };
 }
-async function gatherInfoByToken(token) {
+async function gatherUserInfoByToken(token) {
   const myHeaders = new Headers();
   myHeaders.append("Authorization", "Bearer " + token);
   try {
     const res = await fetch(finalEndpoints.login, {
       method: "POST",
-      headers: myHeaders,
+      headers: new Headers({ Authorization: "Bearer " + token }),
     });
     const user = await res.json();
     return user.data;
@@ -130,7 +83,7 @@ export function signout() {
   return async function logoutThunk(dispatch) {
     dispatch(signoutRequest());
     try {
-      const res = await signOut();
+      await firebaseSignout();
       dispatch(signoutSuccess());
     } catch (error) {
       dispatch(signoutError("Missing auth token"));

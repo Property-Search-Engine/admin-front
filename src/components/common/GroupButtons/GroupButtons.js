@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 export default function GroupOfButtons(props) {
   const { handleChange, clicked, buttons, filterKey } = props;
   const handleClick = (e) => {
-    console.log(e.target.value);
     //@param -> clicked is an array comming from parent state [0]
     if (!clicked.some((click) => click === e.target.value)) {
       e.target.classList.add("btn-clicked");
@@ -18,19 +17,18 @@ export default function GroupOfButtons(props) {
     }
   };
   return (
-    <>
-      <div onClick={handleClick}>
-        {Object.keys(buttons).map((button, i) => (
-          <Button
-            key={`button-group-${i}`}
-            variant="outline-primary"
-            value={button}
-            onClick={handleClick}
-          >
-            {buttons[button]}
-          </Button>
-        ))}
-      </div>
-    </>
+    <div onClick={handleClick}>
+      {Object.keys(buttons).map((button, i) => (
+        <Button
+          key={`button-group-${i}`}
+          variant="outline-secondary"
+          value={button}
+          onClick={handleClick}
+          className="mr-2"
+        >
+          {buttons[button]}
+        </Button>
+      ))}
+    </div>
   );
 }

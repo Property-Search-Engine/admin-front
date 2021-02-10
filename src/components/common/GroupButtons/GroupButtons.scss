@@ -1,22 +1,21 @@
 .btnCommonStyles {
   width: auto;
 }
-.btn-outline-primary {
-  border-color: $primary-blue !important;
-  color: black;
-  font-size: 14px !important;
-  margin: 5px;
-  padding: 5px !important;
-
-  &:hover, &:focus {
-    border-color: $primary-blue !important;
-    background-color: $primary-blue;
-    color: black;
+.btn-outline-secondary {
+  &:hover,
+  &:focus {
+    box-shadow: none !important;
   }
- 
-  
+  &:hover {
+    color: white;
+  }
 }
-
-
-
-
+.btn-clicked {
+  border-color: $primary-blue !important;
+  background-color: $primary-blue !important;
+  color: white !important;
+  &:hover,
+  &:focus {
+    color: white;
+  }
+}

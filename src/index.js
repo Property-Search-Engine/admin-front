@@ -8,13 +8,13 @@ import "./index.scss";
 
 import store from "./redux/store";
 
-import App from "./App";
+import AppContainer from "./redux/containers/AppContainer";
 
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       {/* <PersistGate loading={null} persistor={persistor}> */}
-      <App />
+      <AppContainer />
       {/* </PersistGate> */}
     </Provider>
   </BrowserRouter>,

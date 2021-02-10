@@ -48,3 +48,18 @@ export function camelCaseStringToCapitalizeString(str) {
   const capitaliseString = capitalise(str);
   return capitaliseString.replace(/([A-Z])/g, " $1");
 }
+
+export const createFormData = (objToForm) => {
+  const formData = new FormData();
+  Object.entries(objToForm).forEach(([key, value]) =>
+    formData.append(key, value)
+  );
+  return formData;
+};
+
+export const authHeader = (currentUserToken) => {
+  const header = new Headers();
+  header.append("Authorization", "Bearer " + currentUserToken);
+  header.append("Content-Type", "application/json");
+  return header;
+};
