@@ -9,11 +9,9 @@ export default function AdminSettings(props) {
 
   const { currentUser, signout } = props;
 
-  console.log(currentUser);
-
-  /* if (isSignOut || currentUser.token === null) {
+  if (isSignOut || currentUser.token === null) {
     return <Redirect to={ROUTES.LOGIN} />;
-  } */
+  }
 
   function handleClick(e) {
     e.preventDefault();

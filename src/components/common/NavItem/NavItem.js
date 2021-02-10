@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Navitem(props) {
   const { src, text, href, active } = props;
@@ -10,7 +11,7 @@ export default function Navitem(props) {
 
   return (
     <Nav.Item className={active === true ? "active-border" : ""}>
-      <Nav.Link className="flex-column d-flex align-items-center" href={href}>
+      <Link className="flex-column d-flex align-items-center" to={href}>
         <Image
           src={active === true ? formatActiveSrc(src) : src}
           rounded
@@ -19,7 +20,7 @@ export default function Navitem(props) {
         {text && (
           <p className={active === false ? "sidebar-icons-text" : ""}>{text}</p>
         )}
-      </Nav.Link>
+      </Link>
     </Nav.Item>
   );
 }

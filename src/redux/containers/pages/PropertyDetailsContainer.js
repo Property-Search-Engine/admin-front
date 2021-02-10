@@ -11,6 +11,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     id: id,
     property: state.propertiesState.singlePropertyDetails,
+    loading: state.propertiesState.loading,
+    filters: state.propertiesState.filters,
   };
 };
 
