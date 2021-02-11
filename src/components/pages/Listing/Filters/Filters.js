@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Collapse, Image } from "react-bootstrap";
+import { svgPath } from "../../../../utils/helpers";
 import GroupButtons from "../../../common/GroupButtons/GroupButtons";
 import CheckInputs from "../../../common/Inputs/CheckInput";
 import SelectInput from "../../../common/Inputs/SelectInput";
 import DoubleRangeSlider from "../RangeSlider/RangeSlider";
 
 export default function Filters(props) {
-  const [open, setOpen] = useState(false);
-
-  const { setFilters, filters } = props;
+  const { setFilters, filters, open, handleToggleFiltersOpen } = props;
 
   function handleFilterChange(filterKey, filterValue) {
     setFilters(filterKey, filterValue);
@@ -19,7 +18,7 @@ export default function Filters(props) {
         <Collapse in={open}>
           <div className="">
             <CheckInputs
-              options={["Flat/Department", "House", "Duplex", "Penthouse"]}
+              options={["Flat/Apartment", "House", "Duplex", "Penthouse"]}
               labelText="Type of home"
               inputsName="homeType"
               onChange={handleFilterChange}
@@ -88,7 +87,7 @@ export default function Filters(props) {
         <Collapse in={open}>
           <div>
             <CheckInputs
-              options={["New home", "Need renovation", "Good Conditions"]}
+              options={["New home", "Need renovation", "Good Condition"]}
               labelText="Conditions"
               inputsName="condition"
               onChange={handleFilterChange}
@@ -132,19 +131,15 @@ export default function Filters(props) {
         </Collapse>
       </div>
       <div className="manageList btn-addNew">
-        <a
+        <span
           className="listingAddNew"
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            setOpen(!open);
-          }}
+          onClick={handleToggleFiltersOpen}
           aria-controls="example-collapse-text"
           aria-expanded={open}
         >
-          <Image src="/assets/icons/filters.svg" width="15px" rounded />
+          <Image src={svgPath("filters")} width="15px" rounded />
           Filters
-        </a>
+        </span>
       </div>
     </>
   );

@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 //Pass the actions functions to be accessible by the component
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchlistProperties: () => dispatch(listProperties()),
+    fetchlistProperties: (filters) => dispatch(listProperties(filters)),
     updateFilters: (filterName, filterValue) =>
       dispatch(updatePropertiesFilters(filterName, filterValue)),
   };

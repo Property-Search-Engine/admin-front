@@ -13,15 +13,16 @@ export default function ListingRow(props) {
     filters,
     fetchlistProperties,
     markAsSold,
+    deletedPropertySucces,
+    fetchPropertyDetails,
   } = props;
   const [isRowClicked, setIsRowClicked] = useState(false);
-  const [isPropertyDeleted, setIsPropertyDeleted] = useState(false);
+
   function handleClick(e) {
     e.preventDefault();
     whichView !== "deatils" && setIsRowClicked(true);
   }
   function handleDelete(e) {
-    setIsPropertyDeleted(true);
     deleteProperty(property._id);
     fetchlistProperties(filters);
   }
@@ -29,7 +30,10 @@ export default function ListingRow(props) {
     e.preventDefault();
     markAsSold(property._id);
   }
-  if (isPropertyDeleted) {
+  if (
+    deletedPropertySucces !== null &&
+    deletedPropertySucces._id === property._id
+  ) {
     return <Redirect to={ROUTES.LISTING} />;
   }
   if (isRowClicked) {

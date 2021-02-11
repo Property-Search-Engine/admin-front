@@ -13,14 +13,12 @@ export default function PropertyDetails({
   loading,
   filters,
 }) {
-  useEffect(() => {
+  /* useEffect(() => {
+    console.log(property);
     if (property === null) {
       fetchPropertyDetails(id);
     }
-  }, []);
-  useEffect(() => {
-    fetchPropertyDetails(id);
-  }, [id]);
+  }, []); */
   return (
     <main className="d-flex flex">
       <Sidebar active="listing" />

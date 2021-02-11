@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Dropdown, Image } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import ROUTES from "../../../utils/routes";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 export default function AdminSettings(props) {
   const { currentUser, signout, isSignOut } = props;
@@ -28,7 +28,6 @@ export default function AdminSettings(props) {
             ? `${currentUser.firstname} ${currentUser.lastname}`
             : "Not user own server connection working"}
           <span>
-            {" "}
             <Image
               src="/assets/icons/arrow-down.svg"
               className="arrow-down-btn"
@@ -43,9 +42,15 @@ export default function AdminSettings(props) {
           Cris Garcia
         </Dropdown.Toggle>
         <DropdownMenu>
-          <Dropdown.Item href="">Profile</Dropdown.Item>
-          <Dropdown.Item href="/settings">Settings</Dropdown.Item>
-          <Dropdown.Item onClick={handleClick}>Log Out</Dropdown.Item>
+          <Dropdown.Item as="button">
+            <Link to={ROUTES.DASHBOARD}>Profile</Link>
+          </Dropdown.Item>
+          <Dropdown.Item as="button">
+            <Link to={ROUTES.SETTINGS}>Settings</Link>
+          </Dropdown.Item>
+          <Dropdown.Item as="button" onClick={handleClick}>
+            Log Out
+          </Dropdown.Item>
         </DropdownMenu>
       </Dropdown>
     </div>

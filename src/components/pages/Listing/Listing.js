@@ -5,7 +5,7 @@ import Sidebar from "../../common/Sidebar/Sidebar";
 import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import List from "./List/List";
 
-function Listing({ propertiesList, loading, filters }) {
+function Listing({ propertiesList, loading }) {
   return (
     <main className="d-flex flex">
       <Sidebar active="listing" />
@@ -14,12 +14,7 @@ function Listing({ propertiesList, loading, filters }) {
         {loading ? (
           <LoadingSpinner />
         ) : (
-          <ListContainer
-            whichView={
-              !filters.kind || propertiesList === null ? "noFilters" : "listing"
-            }
-            properties={propertiesList}
-          />
+          <ListContainer whichView={"listing"} properties={propertiesList} />
         )}
       </div>
     </main>

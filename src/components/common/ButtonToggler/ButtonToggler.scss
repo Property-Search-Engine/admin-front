@@ -1,0 +1,47 @@
+.toggle {
+  height: 40px;
+  width: 330px;
+  border-radius: 9px;
+  margin: 20px auto;
+  background-color: #748690;
+  position: relative;
+}
+
+.notch {
+  height: 30px;
+  width: 150px;
+  border-radius: 7px;
+  background-color: white;
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  box-shadow: 0px 6px 9px #748690;
+  transition: all 0.5s ease;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spanEmp {
+  position: absolute;
+  top: 8px;
+  left: 71px;
+  font-weight: bold;
+  color: black;
+}
+
+.spanNew {
+  position: absolute;
+  top: 8px;
+  right: 71px;
+  font-weight: bold;
+}
+
+.notToggled {
+  color: white;
+}
+
+.office > .notch {
+  transform: translate(140px, 0);
+}

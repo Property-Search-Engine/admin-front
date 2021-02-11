@@ -22,31 +22,79 @@ export const listProperties = (filters) => {
       const currentUserToken = await auth.currentUser.getIdToken();
       const AuthHeader = authHeader(currentUserToken);
       //TODO Buil url with filters
-      /*  console.log(filters);
-        const filtersTrimmed = Object.values(filters).filter(
-        (filterValue) =>
-          filterValue !== [] &&
-          filterValue !== {} &&
-          filterValue !== "" &&
-          filterValue !== null
-      ); 
+      if (filters.kind === "") filters.kind = "Home";
+      if (filters.filters === []) filters.filters = "[]";
+      console.log(filters);
+      const formattedFilters = filtersToQueryParamaFormatter(filters);
       const urlParams = new URLSearchParams(filters);
+      const qs = Object.keys(filters)
+        .map(
+          (key) =>
+            `${encodeURIComponent(key)}=${encodeURIComponent(filters[key])}`
+        )
+        .join("&");
       console.log(urlParams);
-      console.log(finalEndpoints.getPropertiesList + urlParams); */
+      console.log(finalEndpoints.getPropertiesList + "?sold=true&" + urlParams);
+      console.log(finalEndpoints.getPropertiesList + "?sold=true&" + qs);
+      //trim filter
+      //if penthouse -> pentHouse | flat/Deparment -> flatDepartment
+
+      /* function filtersToQueryParamaFormatter(filters) {
+        return Object.entries(filters).map(([key, value]) => {
+          switch (key) {
+            case "homeType": {
+              return value.map((homeType) =>
+                homeType === "flat/Apatment" ? "flatApartment" : homeType
+              );
+            }
+            case "equipment": {
+              return "&equipment=" + value;
+            }
+            case "bedRoom": {
+            }
+            case "bathRoom": {
+            }
+            case "buildingUse": {
+            }
+            case "kind": {
+            }
+            case "sold": {
+            }
+            case "kind": {
+            }
+            case value:
+            case value:
+              break;
+
+            default:
+              break;
+          }
+        });
+      }
+ */
       const res = await fetch(finalEndpoints.getPropertiesList + "?kind=Home", {
         headers: AuthHeader,
       });
       const list = await res.json();
       console.log(list);
-      dispatch({
-        type: PropertiesTypes.LIST_PROPERTIES_SUCCESS,
-        payload: list.data,
-      });
+      if (list.data === null) {
+        dispatch(
+          listPropertiesError(
+            "Null data fetching list of properties: " + list.error[0].message
+          )
+        );
+      } else {
+        dispatch({
+          type: PropertiesTypes.LIST_PROPERTIES_SUCCESS,
+          payload: list.data,
+        });
+      }
     } catch (error) {
       dispatch(listPropertiesError(error.message));
     }
   };
 };
+
 //======================================
 //========== Update filters
 //======================================
