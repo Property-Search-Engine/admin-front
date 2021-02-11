@@ -18,7 +18,7 @@ export default function Settings() {
         <ButtonToggler
           toggled={empToggle}
           onClick={handleToggleClick}
-          texts={{ true: "Employees", false: "Create new" }}
+          texts={{ false: "Employees", true: "Create new" }}
         />
         {empToggle && <NewAdminFormContainer />}
       </div>

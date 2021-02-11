@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Table, Image, Button } from "react-bootstrap";
 import Thead from "../Thead/Thead.js";
@@ -19,6 +19,7 @@ export default function List({
   const [modalOpen, setModalOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [kind, setKind] = useState(filters.kind === "Home" ? true : false);
+  const [lastFilters, setLastFilters] = useState(JSON.stringify(filters));
   const headerTexts = [
     "Address",
     "Price",
@@ -26,6 +27,12 @@ export default function List({
     "Add as sold",
     "Remove",
   ];
+  /*  useEffect(() => {
+    console.log(lastFilters !== JSON.stringify(filters));
+    if (lastFilters !== JSON.stringify(filters)) {
+      fetchlistProperties(filters);
+    }
+  }, []); */
   if (properties === null) {
     fetchlistProperties(filters);
     return <Redirect to={ROUTES.LISTING} />;
@@ -36,7 +43,6 @@ export default function List({
   }
   function handleToggleFiltersOpen(e) {
     e.preventDefault();
-    console.log(filters);
     filtersOpen && fetchlistProperties(filters);
     setFiltersOpen(!filtersOpen);
   }
@@ -47,6 +53,7 @@ export default function List({
       : updateFilters("kind", "Office");
     setKind(!kind);
     fetchlistProperties(filters);
+    /* setLastFilters(JSON.stringify(filters)); */
   }
   function handleClickFetch(e) {
     e.preventDefault();

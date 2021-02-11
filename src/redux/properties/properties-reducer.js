@@ -14,7 +14,7 @@ export const PropertiesInitialState = {
   deletedPropertySucces: null,
   markAsSoldSuccess: null,
   filters: {
-    kind: "",
+    kind: "Home",
     homeType: [],
     bedRooms: [],
     bathRooms: [],
@@ -22,7 +22,7 @@ export const PropertiesInitialState = {
     publication: "null",
     filters: [],
     condition: [],
-    range: { max: 0, min: 0 },
+    range: { max: 10000000, min: 0 },
   },
 };
 

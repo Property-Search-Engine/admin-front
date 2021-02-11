@@ -2,6 +2,7 @@ import PropertiesTypes from "./properties-types";
 import { auth, firebaseStorage } from "../../firebase/firebase";
 import { finalEndpoints } from "../../utils/endpoints";
 import { authHeader } from "../../utils/helpers";
+import { isEmptyArray } from "formik";
 
 //======================================
 //===== Fetching list of properties
@@ -21,60 +22,16 @@ export const listProperties = (filters) => {
     try {
       const currentUserToken = await auth.currentUser.getIdToken();
       const AuthHeader = authHeader(currentUserToken);
-      //TODO Buil url with filters
-      if (filters.kind === "") filters.kind = "Home";
-      if (filters.filters === []) filters.filters = "[]";
       console.log(filters);
-      /* const formattedFilters = filtersToQueryParamaFormatter(filters); */
-      const urlParams = new URLSearchParams(filters);
-      const qs = Object.keys(filters)
-        .map(
-          (key) =>
-            `${encodeURIComponent(key)}=${encodeURIComponent(filters[key])}`
-        )
-        .join("&");
-      console.log(urlParams);
-      console.log(finalEndpoints.getPropertiesList + "?sold=true&" + urlParams);
-      console.log(finalEndpoints.getPropertiesList + "?sold=true&" + qs);
-      //trim filter
-      //if penthouse -> pentHouse | flat/Deparment -> flatDepartment
-
-      /* function filtersToQueryParamaFormatter(filters) {
-        return Object.entries(filters).map(([key, value]) => {
-          switch (key) {
-            case "homeType": {
-              return value.map((homeType) =>
-                homeType === "flat/Apatment" ? "flatApartment" : homeType
-              );
-            }
-            case "equipment": {
-              return "&equipment=" + value;
-            }
-            case "bedRoom": {
-            }
-            case "bathRoom": {
-            }
-            case "buildingUse": {
-            }
-            case "kind": {
-            }
-            case "sold": {
-            }
-            case "kind": {
-            }
-            case value:
-            case value:
-              break;
-
-            default:
-              break;
-          }
-        });
-      }
- */
-      const res = await fetch(finalEndpoints.getPropertiesList + "?kind=Home", {
-        headers: AuthHeader,
-      });
+      const trimmedFilters = trimFilters(filters);
+      const formattedFilters = filtersToQueryParamsFormatter(trimmedFilters);
+      console.log(finalEndpoints.getPropertiesList + "?" + formattedFilters);
+      const res = await fetch(
+        finalEndpoints.getPropertiesList + "?" + formattedFilters,
+        {
+          headers: AuthHeader,
+        }
+      );
       const list = await res.json();
       console.log(list);
       if (list.data === null) {
@@ -95,6 +52,80 @@ export const listProperties = (filters) => {
   };
 };
 
+function trimFilters(filters) {
+  const trimmedFilters = {};
+  Object.entries(filters).forEach(([key, value]) => {
+    if (!filters[key] || filters[key] === "null" || isEmptyArray(filters[key]))
+      return;
+
+    trimmedFilters[key] = value;
+  });
+  return trimmedFilters;
+}
+function filtersToQueryParamsFormatter(filters) {
+  return Object.entries(filters)
+    .map(([key, value]) => {
+      const arr_base_string = key + "[]=";
+      console.log(key);
+      switch (key) {
+        case "filters":
+        case "buildingUse":
+        case "condition":
+          return value.map((element) => arr_base_string + element).join("&");
+        case "homeType":
+          return value
+            .map((type) =>
+              type === "flat/apartment"
+                ? arr_base_string + "flatApartment"
+                : arr_base_string + type
+            )
+            .join("&");
+        case "bedRooms":
+          return value
+            .map((element) => {
+              return element === "4+"
+                ? arr_base_string + "4p"
+                : arr_base_string + element;
+            })
+            .join("&");
+
+        case "bathRooms":
+          return value
+            .map((element) => {
+              return element === "3+"
+                ? arr_base_string + "3p"
+                : arr_base_string + element;
+            })
+            .join("&");
+        case "equipment":
+          return arr_base_string + value;
+        case "sold":
+          return value === "Available" ? "&sold=true" : "&sold=false";
+        case "range":
+          let string = Object.entries(value)
+            .map(([key, value]) => {
+              return key === "min" ? "minPrice=" + value : "maxPrice=" + value;
+            })
+            .join("&");
+          return string;
+        case "publication":
+          const beginingOfString = "publicationDate=";
+          if (value === "24")
+            return `${beginingOfString}${Date.now() - 86400000}`;
+          if (value === "week")
+            return beginingOfString + String(Date.now() - 604800000);
+          if (value === "month")
+            return beginingOfString + String(Date.now() - 2629800000);
+
+          break;
+        default: {
+          return key + "=" + value;
+        }
+      }
+      return "";
+    })
+    .join("&");
+}
 //======================================
 //========== Update filters
 //======================================
