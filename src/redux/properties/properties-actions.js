@@ -25,7 +25,7 @@ export const listProperties = (filters) => {
       if (filters.kind === "") filters.kind = "Home";
       if (filters.filters === []) filters.filters = "[]";
       console.log(filters);
-      const formattedFilters = filtersToQueryParamaFormatter(filters);
+      /* const formattedFilters = filtersToQueryParamaFormatter(filters); */
       const urlParams = new URLSearchParams(filters);
       const qs = Object.keys(filters)
         .map(
