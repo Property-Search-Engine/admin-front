@@ -15,6 +15,7 @@ export default function List({
   filters,
   updateFilters,
   fetchlistProperties,
+  singleProperty,
 }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -135,13 +136,20 @@ export default function List({
             </tr>
           </thead>
           <tbody>
-            {properties.map((property, i) => (
+            {!singleProperty &&
+              properties.map((property, i) => (
+                <ListingRowContainer
+                  key={`list-row-${i}`}
+                  whichView={whichView}
+                  property={property}
+                />
+              ))}
+            {singleProperty && (
               <ListingRowContainer
-                key={`list-row-${i}`}
                 whichView={whichView}
-                property={property}
+                property={singleProperty}
               />
-            ))}
+            )}
           </tbody>
         </Table>
       </div>

@@ -3,7 +3,6 @@ import ListContainer from "../../../redux/containers/components/ListContainer";
 import Header from "../../common/Header/Header";
 import Sidebar from "../../common/Sidebar/Sidebar";
 import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
-import List from "./List/List";
 
 function Listing({ propertiesList, loading }) {
   return (

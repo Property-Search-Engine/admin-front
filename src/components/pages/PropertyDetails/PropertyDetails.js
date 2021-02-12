@@ -3,8 +3,10 @@ import Header from "../../common/Header/Header";
 import Sidebar from "../../common/Sidebar/Sidebar";
 import ImageCarousel from "../Listing/ImageCarousel/ImageCarousel";
 import ExtraPropertyDetails from "./ExtraPropertyDetails/ExtraPropertyDetails";
-import List from "../Listing/List/List";
 import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
+import ListContainer from "../../../redux/containers/components/ListContainer";
+import { Redirect } from "react-router-dom";
+import ROUTES from "../../../utils/routes";
 
 export default function PropertyDetails({
   id,
@@ -13,22 +15,21 @@ export default function PropertyDetails({
   loading,
   filters,
 }) {
-  /* useEffect(() => {
-    console.log(property);
-    if (property === null) {
-      fetchPropertyDetails(id);
-    }
-  }, []); */
+  if (property === null || property._id !== id) {
+    fetchPropertyDetails(id);
+    /* return <Redirect to={ROUTES.LISTING + "/" + id} />; */
+  }
+
   return (
     <main className="d-flex flex">
       <Sidebar active="listing" />
       <div className="mainContainer">
         <Header />
-        {property === null || loading ? (
+        {property === null || loading || !filters ? (
           <LoadingSpinner />
         ) : (
           <>
-            <List whichView="details" properties={[property]} />
+            <ListContainer whichView="details" singleProperty={property} />
             <div className="d-flex flex-row px-5 mt-5 justify-content-center">
               <ExtraPropertyDetails property={property} />
               <ImageCarousel property={property} />

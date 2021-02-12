@@ -14,7 +14,6 @@ export default function ListingRow(props) {
     fetchlistProperties,
     markAsSold,
     deletedPropertySucces,
-    fetchPropertyDetails,
   } = props;
   const [isRowClicked, setIsRowClicked] = useState(false);
 
@@ -37,7 +36,7 @@ export default function ListingRow(props) {
     return <Redirect to={ROUTES.LISTING} />;
   }
   if (isRowClicked) {
-    return <Redirect to={"listing/" + property._id} />;
+    return <Redirect to={ROUTES.LISTING + "/" + property._id} />;
   }
 
   return (
