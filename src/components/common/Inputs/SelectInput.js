@@ -14,13 +14,7 @@ function SelectInput(props) {
           {labelText}
         </Form.Label>
       )}
-      <Form.Control
-        name={inputName}
-        onChange={handleChange}
-        value={value}
-        as="select"
-        custom
-      >
+      <Form.Control name={inputName} onChange={handleChange} as="select" custom>
         {Object.keys(options).map((opt, i) => {
           return (
             <option

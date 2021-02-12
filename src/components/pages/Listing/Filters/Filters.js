@@ -75,7 +75,7 @@ export default function Filters(props) {
                     inputName="sold"
                     labelText="Sold Status"
                     onChange={handleFilterChange}
-                    value={filters.sold}
+                    value={filters.sold ? "Sold" : "Available"}
                   />
                 </div>
               </div>

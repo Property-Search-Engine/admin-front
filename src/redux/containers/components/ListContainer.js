@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     properties: state.propertiesState.propertiesList,
     loading: state.propertiesState.loading,
     filters: state.propertiesState.filters,
+    kindChanged: state.propertiesState.kindChanged,
   };
 };
 

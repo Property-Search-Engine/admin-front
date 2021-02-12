@@ -100,7 +100,7 @@ function filtersToQueryParamsFormatter(filters) {
         case "equipment":
           return arr_base_string + value;
         case "sold":
-          return value === "Available" ? "sold=true" : "sold=false";
+          return value === "Available" ? "sold=false" : "sold=true";
         case "range":
           let string = Object.entries(value)
             .map(([key, value]) => {
@@ -132,7 +132,10 @@ function filtersToQueryParamsFormatter(filters) {
 export const updatePropertiesFilters = (filterName, filterValue) => {
   return {
     type: PropertiesTypes.UPDATE_PROPERTIES_FILTERS,
-    payload: [filterName, filterValue],
+    payload: {
+      filterToUpdate: [filterName, filterValue],
+      isNewKind: filterName === "kind" ? true : false,
+    },
   };
 };
 //======================================

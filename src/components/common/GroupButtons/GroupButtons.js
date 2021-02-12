@@ -16,6 +16,7 @@ export default function GroupOfButtons(props) {
       ); // [0,1,3] --> [0,3]
     }
   };
+
   return (
     <div onClick={handleClick}>
       {Object.keys(buttons).map((button, i) => (
@@ -24,7 +25,11 @@ export default function GroupOfButtons(props) {
           variant="outline-secondary"
           value={button}
           onClick={handleClick}
-          className="mr-2"
+          className={
+            clicked.some((click) => click === button)
+              ? "mr-2 btn-clicked"
+              : "mr-2"
+          }
         >
           {buttons[button]}
         </Button>

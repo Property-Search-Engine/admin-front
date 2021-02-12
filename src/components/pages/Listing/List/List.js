@@ -16,11 +16,11 @@ export default function List({
   updateFilters,
   fetchlistProperties,
   singleProperty,
+  kindChanged,
 }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [kind, setKind] = useState(filters.kind === "Home" ? true : false);
-  const [lastFilters, setLastFilters] = useState(JSON.stringify(filters));
   const headerTexts = [
     "Address",
     "Price",
@@ -28,12 +28,13 @@ export default function List({
     "Add as sold",
     "Remove",
   ];
-  /*  useEffect(() => {
-    console.log(lastFilters !== JSON.stringify(filters));
-    if (lastFilters !== JSON.stringify(filters)) {
+  useEffect(() => {
+    if (kindChanged) {
+      console.log("goi tin");
       fetchlistProperties(filters);
     }
-  }, []); */
+  }, [kindChanged]);
+
   if (properties === null) {
     fetchlistProperties(filters);
     return <Redirect to={ROUTES.LISTING} />;
@@ -53,8 +54,6 @@ export default function List({
       ? updateFilters("kind", "Home")
       : updateFilters("kind", "Office");
     setKind(!kind);
-    fetchlistProperties(filters);
-    /* setLastFilters(JSON.stringify(filters)); */
   }
   function handleClickFetch(e) {
     e.preventDefault();

@@ -3,7 +3,7 @@ import { Image } from "react-bootstrap";
 
 import { toCamelCase } from "../../../utils/helpers";
 
-function RadioInputs(props) {
+function CheckInputs(props) {
   const {
     labelText,
     labelImgSrc,
@@ -13,20 +13,13 @@ function RadioInputs(props) {
     onChange,
   } = props;
 
-  const [checked, setChecked] = useState([]);
-  const [firstCall, setFirstCall] = useState(1);
-
-  useEffect(() => {
-    if (firstCall !== 1) {
-      onChange(inputsName, checked);
-    }
-    setFirstCall(firstCall + 1);
-  }, [checked]);
-
   const handleChange = (e) =>
-    checked.some((item) => item === e.target.value)
-      ? setChecked(checked.filter((item) => item !== e.target.value))
-      : setChecked([...checked, e.target.value]);
+    values.some((item) => item === e.target.value)
+      ? onChange(
+          inputsName,
+          values.filter((item) => item !== e.target.value)
+        )
+      : onChange(inputsName, [...values, e.target.value]);
 
   return (
     <div>
@@ -58,4 +51,4 @@ function RadioInputs(props) {
   );
 }
 
-export default RadioInputs;
+export default CheckInputs;
