@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "latest",
     "@material-ui/core": "^4.11.3",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
@@ -25,7 +26,8 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "web-vitals": "^0.2.4",
-    "yup": "^0.32.8"
+    "yup": "^0.32.8",
+    "antd": "4.12.2"
   },
   "scripts": {
     "start": "react-scripts start",
