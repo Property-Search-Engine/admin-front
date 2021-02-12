@@ -14,7 +14,7 @@ export default function Filters(props) {
   }
   return (
     <>
-      <div>
+      <div style={{ width: "75vw" }}>
         <Collapse in={open}>
           <div className="">
             <CheckInputs
@@ -56,16 +56,28 @@ export default function Filters(props) {
                 className="form-icon-label"
               />
               <div className="bedroomsCol">
-                <GroupButtons
-                  handleChange={handleFilterChange}
-                  filterKey="bathRooms"
-                  clicked={filters.bathRooms}
-                  buttons={{
-                    1: "1",
-                    2: "2",
-                    "3+": "3 or +",
-                  }}
-                />
+                <div className={"d-flex flex-column"}>
+                  <GroupButtons
+                    handleChange={handleFilterChange}
+                    filterKey="bathRooms"
+                    clicked={filters.bathRooms}
+                    buttons={{
+                      1: "1",
+                      2: "2",
+                      "3+": "3 or +",
+                    }}
+                  />
+                  <SelectInput
+                    options={{
+                      Available: "Available",
+                      Sold: "Sold",
+                    }}
+                    inputName="sold"
+                    labelText="Sold Status"
+                    onChange={handleFilterChange}
+                    value={filters.sold}
+                  />
+                </div>
               </div>
             </div>
             <div className="filtersColumn">

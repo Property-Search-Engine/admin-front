@@ -100,7 +100,7 @@ function filtersToQueryParamsFormatter(filters) {
         case "equipment":
           return arr_base_string + value;
         case "sold":
-          return value === "Available" ? "&sold=true" : "&sold=false";
+          return value === "Available" ? "sold=true" : "sold=false";
         case "range":
           let string = Object.entries(value)
             .map(([key, value]) => {
