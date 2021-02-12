@@ -95,7 +95,7 @@ export default function Filters(props) {
             />
             <div className="filtersColumn">
               Price Range
-              <DoubleRangeSlider />
+              <DoubleRangeSlider setFilters={setFilters} />
             </div>
             <div className="filtersColumn">
               <SelectInput

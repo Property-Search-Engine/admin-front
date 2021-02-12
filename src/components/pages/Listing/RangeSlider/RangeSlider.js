@@ -13,17 +13,20 @@ function valuetext(value) {
   return `${value}$`;
 }
 
-export default function RangeSlider() {
+export default function RangeSlider({ setFilters }) {
   const classes = useStyles();
   const [value, setValue] = useState([0, 900000]);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleChange = (event, [min, max]) => {
+    setValue([min, max]);
+    setFilters("range", { min, max });
   };
   const handleinputChange = (e) => {
     if (e.target.id === "min") {
       setValue([e.target.value, value[1]]);
+      setFilters("range", { min: e.target.value, max: value[1] });
     } else {
       setValue([value[0], e.target.value]);
+      setFilters("range", { min: value[0], max: e.target.value });
     }
   };
 
