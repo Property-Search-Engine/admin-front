@@ -5,6 +5,7 @@ import ButtonToggler from "../../common/ButtonToggler/ButtonToggler";
 // import {svgPath} from "../../../utils/helpers";
 // import ROUTES from "../../../utils/routes";
 import Sidebar from "../../common/Sidebar/Sidebar";
+import EmployeesList from "./EmployeesList/EmployeesList";
 
 export default function Settings() {
   const [empToggle, setEmpToggle] = useState(true);
@@ -21,6 +22,7 @@ export default function Settings() {
           texts={{ false: "Employees", true: "Create new" }}
         />
         {empToggle && <NewAdminFormContainer />}
+        {!empToggle && <EmployeesList />}
       </div>
     </main>
   );
