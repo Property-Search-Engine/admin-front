@@ -50,7 +50,6 @@ export default function RangeSlider({ setFilters }) {
       <Slider
         value={value}
         onChange={handleChange}
-        //valueLabelDisplay="auto"
         aria-labelledby="range-slider"
         min={0}
         max={900000}
