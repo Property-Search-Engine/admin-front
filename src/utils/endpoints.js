@@ -6,7 +6,7 @@ export const finalEndpoints = {
   register: userEndpoint + "/register",
   login: userEndpoint + "/login",
   deleteEmployee: userEndpoint + "/",
-  employeesList: userEndpoint + "/",
+  getEmployeesList: userEndpoint + "/employees",
   getPropertiesList: propertiesEndpoint + "/",
   deleteProperty: propertiesEndpoint + "/", //* DELETE WITH ID Param
   createProperty: propertiesEndpoint + "/", //* METHOD POST

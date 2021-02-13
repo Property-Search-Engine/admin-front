@@ -81,7 +81,7 @@ export const deleteEmployeeSuccess = (newEmployee) => ({
 });
 
 //** Function/Action to pass to components
-export function deleteEmployee(employeeEmail) {
+export function deleteEmployee(employeeId) {
   return async function deleteEmployeeThunk(dispatch) {
     dispatch(deleteEmployeeRequest());
 
@@ -90,15 +90,14 @@ export function deleteEmployee(employeeEmail) {
       const currentUserToken = await auth.currentUser.getIdToken();
 
       //Connect with our server
-      const formData = createFormData(employeeEmail);
       const AuthHeader = authHeader(currentUserToken);
 
-      var deletedEmployee = await fetch(finalEndpoints.deleteEmployee, {
+      var response = await fetch(finalEndpoints.deleteEmployee + employeeId, {
         method: "DELETE",
-        body: formData,
         headers: AuthHeader,
       });
-
+      const deletedEmployee = await response.text();
+      console.log(deletedEmployee);
       dispatch(deleteEmployeeSuccess(deletedEmployee.data));
     } catch (error) {
       dispatch(deleteEmployeeError(error.message));
@@ -107,14 +106,14 @@ export function deleteEmployee(employeeEmail) {
 }
 
 export const employeesListRequest = () => ({
-  type: EmployeesTypes.DELETE_EMPLOYEE_REQUEST,
+  type: EmployeesTypes.EMPLOYEES_LIST_REQUEST,
 });
 export const employeesListError = (message) => ({
-  type: EmployeesTypes.DELETE_EMPLOYEE_ERROR,
+  type: EmployeesTypes.EMPLOYEES_LIST_ERROR,
   payload: message,
 });
 export const employeesListSuccess = (list) => ({
-  type: EmployeesTypes.DELETE_EMPLOYEE_SUCCESS,
+  type: EmployeesTypes.EMPLOYEES_LIST_SUCCESS,
   payload: list,
 });
 
@@ -130,12 +129,13 @@ export function fetchEmployeesList() {
       //Connect with our server
       const AuthHeader = authHeader(currentUserToken);
 
-      var employeesList = await fetch(finalEndpoints.employeesList, {
+      const responseFromServer = await fetch(finalEndpoints.getEmployeesList, {
         method: "GET",
         headers: AuthHeader,
       });
+      const employeeList = await responseFromServer.json();
 
-      dispatch(deleteEmployeeSuccess(employeesList.data));
+      dispatch(employeesListSuccess(employeeList.data));
     } catch (error) {
       dispatch(employeesListSuccess(error.message));
     }

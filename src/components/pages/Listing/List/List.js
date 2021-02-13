@@ -63,14 +63,6 @@ export default function List({
     <div className="detailsContainer">
       {whichView !== "details" && (
         <>
-          <Button
-            variant="primary"
-            id="homeKindFilter"
-            onClick={handleClickFetch}
-            className="d-inline"
-          >
-            RefreshList of properties
-          </Button>
           <div className="text-center">
             Which kind of property you want to index?
           </div>

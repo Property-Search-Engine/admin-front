@@ -1,7 +1,7 @@
 import EmployeesTypes from "./employees-types";
 
 export const employeesInitialState = {
-  employeesList: [],
+  employeeList: [],
   isFetchingEmployees: false,
   fetchingEmployeesError: null,
 
@@ -11,6 +11,7 @@ export const employeesInitialState = {
 
   isDeletingEmployee: false,
   deletingEmployeeError: null,
+  deletedSuccess: false,
   deletedEmployees: [],
 };
 
@@ -34,7 +35,7 @@ const EmployeesReducer = (state = employeesInitialState, action) => {
       return {
         ...state,
         isCreatingEmployee: false,
-        employeesList: [...state.employeesList, action.payload],
+        employeeList: action.payload,
         createdEmployees: [...state.createdEmployees, action.payload],
       };
     }
@@ -48,6 +49,7 @@ const EmployeesReducer = (state = employeesInitialState, action) => {
     case EmployeesTypes.DELETE_EMPLOYEE_ERROR: {
       return {
         ...state,
+        deletedSuccess: false,
         isDeletingEmployee: false,
         deletingEmployeeError: action.payload,
       };
@@ -56,31 +58,34 @@ const EmployeesReducer = (state = employeesInitialState, action) => {
       return {
         ...state,
         isCreatingEmployee: false,
+        deletedSuccess: true,
         deletedEmployees: [...state.deletedEmployees, action.payload],
-        employeesList: state.employeesList.filter(
-          (emp) => emp._id !== action.payload._id
-        ),
+        employeeList: [
+          ...state.employeeList.filter((emp) => emp._id !== action.payload._id),
+        ],
       };
     }
     case EmployeesTypes.EMPLOYEES_LIST_REQUEST: {
       return {
         ...state,
+        deletedSuccess: false,
         isFetchingEmployees: true,
-        deletingEmployeeError: null,
+        fetchingEmployeesError: null,
       };
     }
     case EmployeesTypes.EMPLOYEES_LIST_ERROR: {
       return {
         ...state,
         isFetchingEmployees: false,
-        deletingEmployeeError: action.payload,
+        fetchingEmployeesError: action.payload,
       };
     }
     case EmployeesTypes.EMPLOYEES_LIST_SUCCESS: {
       return {
         ...state,
         isFetchingEmployees: false,
-        employeesList: action.payload,
+        fetchingEmployeesError: null,
+        employeeList: action.payload,
       };
     }
 
