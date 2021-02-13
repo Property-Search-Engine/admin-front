@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { fetchEmployeesList } from "../../../redux/employees/employees-actions";
 import NewAdminFormContainer from "../../../redux/containers/components/NewAdminFormContainer";
 import ButtonToggler from "../../common/ButtonToggler/ButtonToggler";
 // import TextInput from "../../common/Inputs/TextInput";
@@ -6,10 +8,10 @@ import ButtonToggler from "../../common/ButtonToggler/ButtonToggler";
 // import ROUTES from "../../../utils/routes";
 import Sidebar from "../../common/Sidebar/Sidebar";
 import EmployeesList from "./EmployeesList/EmployeesList";
-
-export default function Settings() {
+function Settings() {
   const [empToggle, setEmpToggle] = useState(true);
   const handleToggleClick = (e) => {
+    if (empToggle) fetchEmployeesList();
     setEmpToggle(!empToggle);
   };
   return (
@@ -27,3 +29,12 @@ export default function Settings() {
     </main>
   );
 }
+
+//Pass the actions functions to be accessible by the component
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchEmployees: () => dispatch(fetchEmployeesList()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Settings);

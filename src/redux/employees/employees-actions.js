@@ -96,9 +96,11 @@ export function deleteEmployee(employeeId) {
         method: "DELETE",
         headers: AuthHeader,
       });
-      const deletedEmployee = await response.text();
-      console.log(deletedEmployee);
-      dispatch(deleteEmployeeSuccess(deletedEmployee.data));
+      if (response.ok) {
+        dispatch(deleteEmployeeSuccess());
+      } else {
+        dispatch(deleteEmployeeError("Response not ok deleted"));
+      }
     } catch (error) {
       dispatch(deleteEmployeeError(error.message));
     }

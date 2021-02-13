@@ -231,7 +231,7 @@ export function createProperty(newPropertyObj) {
           delete newPropertyObj[inputName];
         }
         if (inputName === "sold") {
-          inputValue === "available"
+          inputValue === "Available"
             ? (newPropertyObj.sold = false)
             : (newPropertyObj.sold = true);
         }

@@ -75,15 +75,20 @@ class EmployeesList extends React.Component {
     console.log(employeeToDelete);
     this.props.deleteEmployee(employeeToDelete._id);
   };
-  render() {
+  componentDidMount() {
     const { employeeList, fetchEmployees, deletedSuccess } = this.props;
+    if (!employeeList || isEmptyArray(employeeList) || deletedSuccess) {
+      fetchEmployees();
+      this.forceUpdate();
+    }
+  }
+
+  render() {
     const components = {
       body: {
         row: EditableRow,
       },
     };
-    if (!employeeList || isEmptyArray(employeeList) || deletedSuccess)
-      fetchEmployees();
     const columns = this.columns.map((col) => {
       if (!col.editable) {
         return col;

@@ -67,7 +67,7 @@ class Charts extends React.Component {
       headers: AuthHeader,
     });
     const userStats = await res.json();
-    console.log(userStats);
+
     const global = {
       listings: {
         available: userStats.data.available,

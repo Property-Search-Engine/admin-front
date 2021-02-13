@@ -12,7 +12,6 @@ export const employeesInitialState = {
   isDeletingEmployee: false,
   deletingEmployeeError: null,
   deletedSuccess: false,
-  deletedEmployees: [],
 };
 
 const EmployeesReducer = (state = employeesInitialState, action) => {
@@ -35,7 +34,7 @@ const EmployeesReducer = (state = employeesInitialState, action) => {
       return {
         ...state,
         isCreatingEmployee: false,
-        employeeList: action.payload,
+        employeeList: [...state.employeeList, action.payload],
         createdEmployees: [...state.createdEmployees, action.payload],
       };
     }
@@ -59,7 +58,6 @@ const EmployeesReducer = (state = employeesInitialState, action) => {
         ...state,
         isCreatingEmployee: false,
         deletedSuccess: true,
-        deletedEmployees: [...state.deletedEmployees, action.payload],
         employeeList: [
           ...state.employeeList.filter((emp) => emp._id !== action.payload._id),
         ],
