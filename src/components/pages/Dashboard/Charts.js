@@ -1,5 +1,9 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
+import { finalEndpoints } from "../../../utils/endpoints";
+import { authHeader } from "../../../utils/helpers";
+import { auth, firebaseStorage } from "../../../firebase/firebase";
+
 
 export default class Charts extends React.Component {
   constructor(props) {
@@ -55,27 +59,28 @@ export default class Charts extends React.Component {
     this.setData();
   }
 
-  setData() {
+  async setData() {
+    const currentUserToken = await auth.currentUser.getIdToken();
+    const AuthHeader = authHeader(currentUserToken);
+    const res = await fetch(
+      finalEndpoints.getUserStats,
+      {
+        headers: AuthHeader,
+      }
+    );
+    const userStats = await res.json()
+    console.log(userStats)
     const global = {
       listings: {
-        available: 128,
-        sold: 36,
+        available: userStats.data.available,
+        sold: userStats.data.sold,
       },
 
       value: {
-        available: 18900000,
-        sold: 4600000,
+        available: userStats.data.revenue,
+        sold: userStats.data.possibleRevenue,
       },
     };
-
-    const employee = {
-      sold: {
-        q: 4,
-        v: 560000,
-        c: 26000,
-      },
-    };
-
     const charts = { ...this.state.charts };
 
     charts.global.listings.labels.push(
