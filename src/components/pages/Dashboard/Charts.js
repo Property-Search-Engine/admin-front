@@ -1,11 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Doughnut } from "react-chartjs-2";
 import { finalEndpoints } from "../../../utils/endpoints";
 import { authHeader } from "../../../utils/helpers";
-import { auth, firebaseStorage } from "../../../firebase/firebase";
+import { auth } from "../../../firebase/firebase";
 
-
-export default class Charts extends React.Component {
+class Charts extends React.Component {
   constructor(props) {
     super(props);
 
@@ -52,24 +52,22 @@ export default class Charts extends React.Component {
           ],
         },
       },
+      isAuthenticated: {},
     };
   }
 
   componentDidMount() {
-    this.setData();
+    if (this.props.isAuthenticated) this.setData();
   }
 
   async setData() {
     const currentUserToken = await auth.currentUser.getIdToken();
     const AuthHeader = authHeader(currentUserToken);
-    const res = await fetch(
-      finalEndpoints.getUserStats,
-      {
-        headers: AuthHeader,
-      }
-    );
-    const userStats = await res.json()
-    console.log(userStats)
+    const res = await fetch(finalEndpoints.getUserStats, {
+      headers: AuthHeader,
+    });
+    const userStats = await res.json();
+    console.log(userStats);
     const global = {
       listings: {
         available: userStats.data.available,
@@ -120,3 +118,11 @@ export default class Charts extends React.Component {
     );
   }
 }
+//Pass the properties state to be accessible by the component
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.userState.isAuthenticated,
+  };
+};
+
+export default connect(mapStateToProps, null)(Charts);
