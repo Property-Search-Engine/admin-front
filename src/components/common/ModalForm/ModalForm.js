@@ -12,7 +12,7 @@ import { svgPath, fadeOut, toCamelCase } from "../../../utils/helpers";
 
 function ModalForm(props) {
   const typeOptions = ["Apartment", "Duplex", "House", "Penthouse"];
-  const conditionOptions = ["New House", "Good condition", "Needs renovation"];
+  const conditionOptions = ["New Home", "Good condition", "Needs renovation"];
   const filterOptions = [
     "Pets Allowed",
     "Lift",
