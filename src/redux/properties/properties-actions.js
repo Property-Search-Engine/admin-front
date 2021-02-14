@@ -66,7 +66,6 @@ function filtersToQueryParamsFormatter(filters) {
   return Object.entries(filters)
     .map(([key, value]) => {
       const arr_base_string = key + "[]=";
-      console.log(key);
       switch (key) {
         case "filters":
         case "buildingUse":
@@ -231,7 +230,7 @@ export function createProperty(newPropertyObj) {
           delete newPropertyObj[inputName];
         }
         if (inputName === "sold") {
-          inputValue === "Available"
+          inputValue === "available"
             ? (newPropertyObj.sold = false)
             : (newPropertyObj.sold = true);
         }
