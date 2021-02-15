@@ -75,10 +75,8 @@ class Charts extends React.Component {
       },
 
       value: {
-        available: userStats.data.revenue ? userStats.data.revenue : 0,
-        sold: userStats.data.possibleRevenue
-          ? userStats.data.possibleRevenue
-          : 0,
+        available: userStats.data.revenue,
+        sold: userStats.data.possibleRevenue,
       },
     };
     const charts = { ...this.state.charts };
@@ -107,14 +105,22 @@ class Charts extends React.Component {
       <div className="charts">
         <h2>Global</h2>
         <div className="content">
-          <div className="col">
-            <h3>Listings</h3>
-            <Doughnut data={this.state.charts.global.listings} />
-          </div>
-          <div className="col">
-            <h3>Total Value</h3>
-            <Doughnut data={this.state.charts.global.value} />
-          </div>
+          {this.state.charts.global.listings.datasets[0].data.length < 1 ? (
+            <div className="w-100 text-center">
+              <h3>Add your first property to enjoy charts</h3>
+            </div>
+          ) : (
+            <>
+              <div className="col">
+                <h3>Listings</h3>
+                <Doughnut data={this.state.charts.global.listings} />
+              </div>
+              <div className="col">
+                <h3>Total Value</h3>
+                <Doughnut data={this.state.charts.global.value} />
+              </div>
+            </>
+          )}
         </div>
       </div>
     );
