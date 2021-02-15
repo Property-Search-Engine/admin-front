@@ -4,6 +4,7 @@ const ROUTES = {
   SIGNUP: "/sign-up",
   LISTING: "/listing",
   PROPERTY_DETAILS: "/listing/:id",
+  BOOKINGS: "/users/bookings",
   SETTINGS: "/settings",
   ERROR: "",
 };

@@ -21,6 +21,12 @@ export default function Sidebar(props) {
           active={active === "listing" ? true : false}
         />
         <NavItem
+          src="/assets/icons/bookings.svg"
+          text="Bookings"
+          href={ROUTES.BOOKINGS}
+          active={active === "bookings" ? true : false}
+        />
+        <NavItem
           src="/assets/icons/settings.svg"
           text="Settings"
           href={ROUTES.SETTINGS}
