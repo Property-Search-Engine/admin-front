@@ -7,6 +7,7 @@ import LoginContainer from "./redux/containers/pages/LoginContainer";
 import Settings from "./components/pages/Settings/Settings";
 import PropertyDetailsContainer from "./redux/containers/pages/PropertyDetailsContainer";
 import ListingContainer from "./redux/containers/pages/ListingContainer";
+import Booking from "./components/pages/Booking/Bookings";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
       />
       <Route path={ROUTES.LISTING} exact>
         <ListingContainer />
+      </Route>
+      <Route path={ROUTES.BOOKINGS}>
+        <Booking />
       </Route>
       <Route path={ROUTES.SETTINGS}>
         <Settings />
