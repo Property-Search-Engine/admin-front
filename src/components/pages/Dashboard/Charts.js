@@ -70,13 +70,15 @@ class Charts extends React.Component {
 
     const global = {
       listings: {
-        available: userStats.data.available,
-        sold: userStats.data.sold,
+        available: userStats.data.available ? userStats.data.available : 0,
+        sold: userStats.data.sold ? userStats.data.sold : 0,
       },
 
       value: {
-        available: userStats.data.revenue,
-        sold: userStats.data.possibleRevenue,
+        available: userStats.data.revenue ? userStats.data.revenue : 0,
+        sold: userStats.data.possibleRevenue
+          ? userStats.data.possibleRevenue
+          : 0,
       },
     };
     const charts = { ...this.state.charts };
