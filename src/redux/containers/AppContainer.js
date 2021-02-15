@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 
-/* import { currentUserStateSelector } from "../../user/user-selectors"; */
 import { listProperties } from "../properties/properties-actions";
 
 import App from "../../App";

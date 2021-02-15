@@ -1,20 +1,19 @@
-import BookingsTypes from './bookings-types';
-
+import BookingsTypes from "./bookings-types";
 
 export const BookingsAccept = () => ({
-    type: BookingsTypes.BOOKINGS_ACCEPT,
-    payload: "somthin"
+  type: BookingsTypes.BOOKINGS_ACCEPT,
+  payload: "somthin",
 });
-console.log(BookingsAccept)
+console.log(BookingsAccept);
 
 export const BookingsPending = () => ({
-    type: BookingsTypes.BOOKINGS_PENDING,
+  type: BookingsTypes.BOOKINGS_PENDING,
 });
 
 export const BookingsDeni = () => ({
-    type: BookingsTypes.BOOKINGS_DENY,
+  type: BookingsTypes.BOOKINGS_DENY,
 });
 
 export const BookingsSuccess = () => ({
-    type: BookingsTypes.BOOKINGS_SUCCESS,
+  type: BookingsTypes.BOOKINGS_SUCCESS,
 });

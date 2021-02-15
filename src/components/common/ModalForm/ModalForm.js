@@ -4,7 +4,6 @@ import Modal from "../Modal/Modal";
 import TextInput from "../Inputs/TextInput";
 import RadioInputs from "../Inputs/RadioInputs";
 import CheckInput from "../Inputs/CheckInput";
-import DateInput from "../Inputs/DateInput";
 import NumberInput from "../Inputs/NumberInput";
 import SelectInput from "../Inputs/SelectInput";
 
@@ -77,17 +76,8 @@ function ModalForm(props) {
     setFormData({ ...formData, [inputName]: inputValue });
   };
 
-  // useEffect(() => {
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // close();
-    // e.target.reset();
-
     createProperty(formData);
   };
   function close() {

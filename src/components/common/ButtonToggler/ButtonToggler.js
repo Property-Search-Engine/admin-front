@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React from "react";
 import "./ButtonToggler.scss";
 
 export default function HomeOfficeToggle({ texts, toggled, onClick }) {

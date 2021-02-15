@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Collapse, Image } from "react-bootstrap";
 import { svgPath } from "../../../../utils/helpers";
 import GroupButtons from "../../../common/GroupButtons/GroupButtons";

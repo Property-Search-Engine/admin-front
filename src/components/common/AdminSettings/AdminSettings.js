@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { Redirect, Link } from "react-router-dom";
 import { Dropdown, Image } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import ROUTES from "../../../utils/routes";
-import { Redirect, Link } from "react-router-dom";
 
 export default function AdminSettings(props) {
   const { currentUser, signout, isSignOut } = props;

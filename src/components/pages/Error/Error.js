@@ -14,7 +14,7 @@ export default function Error() {
       {!goToDashBoard ? (
         <>
           <div>
-            <img src="/assets/images/404_error_ufo.png" />
+            <img alt="" src="/assets/images/404_error_ufo.png" />
           </div>
           <div>
             <h1>Oops something went wrong...</h1>

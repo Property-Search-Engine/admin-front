@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import Sidebar from "../../common/Sidebar/Sidebar";
 import Header from "../../common/Header/Header";
 import Charts from "./Charts";

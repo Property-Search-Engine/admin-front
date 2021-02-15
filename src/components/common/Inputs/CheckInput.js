@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Image } from "react-bootstrap";
 
 import { toCamelCase } from "../../../utils/helpers";

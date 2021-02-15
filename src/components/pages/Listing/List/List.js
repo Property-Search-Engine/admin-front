@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Table, Image, Button } from "react-bootstrap";
+import { Table, Image } from "react-bootstrap";
 import Thead from "../Thead/Thead.js";
 import Filters from "../Filters/Filters.js";
 import ButtonToggler from "../../../common/ButtonToggler/ButtonToggler";
@@ -54,10 +54,6 @@ export default function List({
       ? updateFilters("kind", "Home")
       : updateFilters("kind", "Office");
     setKind(!kind);
-  }
-  function handleClickFetch(e) {
-    e.preventDefault();
-    fetchlistProperties(filters);
   }
   return (
     <div className="detailsContainer">

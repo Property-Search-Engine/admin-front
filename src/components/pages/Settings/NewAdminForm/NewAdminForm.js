@@ -2,7 +2,6 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-
 export default function SignupForm({ createEmployee }) {
   function handleSubmit(newEmployee, { setSubmitting }) {
     createEmployee(newEmployee);
@@ -21,7 +20,6 @@ export default function SignupForm({ createEmployee }) {
         password: "",
       }}
       validationSchema={Yup.object({
-
         firstname: Yup.string()
           .max(15, "Must be 15 characters or less")
           .required("Required"),
@@ -42,7 +40,6 @@ export default function SignupForm({ createEmployee }) {
           .required("Required"),
       })}
       onSubmit={handleSubmit}
-
     >
       <Form id="settings-form">
         <div className="d-flex flex-column p-3">

@@ -12,5 +12,5 @@ export const finalEndpoints = {
   createProperty: propertiesEndpoint + "/", //* METHOD POST
   getPropertyById: propertiesEndpoint + "/", //* To add as param propertyId
   markPropertyAsSold: propertiesEndpoint + "/", //* Add property Id and then /sold
-  getUserStats: userEndpoint + "/statistics"
+  getUserStats: userEndpoint + "/statistics",
 };

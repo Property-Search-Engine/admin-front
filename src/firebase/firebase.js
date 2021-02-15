@@ -3,7 +3,6 @@ import "firebase/auth";
 import "firebase/storage";
 
 if (!firebase.apps.length) {
-  // Paste your config object here ⬇️
   const firebaseConfig = {
     apiKey: "AIzaSyBZ9H5o88eqCCi7go2UXInB4Qof-XSCT-E",
     authDomain: "casa-me.firebaseapp.com",

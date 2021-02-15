@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import { fetchEmployeesList } from "../../../redux/employees/employees-actions";
 import NewAdminFormContainer from "../../../redux/containers/components/NewAdminFormContainer";
 import ButtonToggler from "../../common/ButtonToggler/ButtonToggler";
-// import TextInput from "../../common/Inputs/TextInput";
-// import {svgPath} from "../../../utils/helpers";
-// import ROUTES from "../../../utils/routes";
 import Sidebar from "../../common/Sidebar/Sidebar";
 import EmployeesList from "./EmployeesList/EmployeesList";
 function Settings() {

@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 
-/* import { currentUserStateSelector } from "../../user/user-selectors"; */
 import { login, signout } from "../../user/user-actions";
 
 import Login from "../../../components/pages/Login/Login";

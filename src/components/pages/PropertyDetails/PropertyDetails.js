@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "../../common/Header/Header";
 import Sidebar from "../../common/Sidebar/Sidebar";
 import ImageCarousel from "../Listing/ImageCarousel/ImageCarousel";
 import ExtraPropertyDetails from "./ExtraPropertyDetails/ExtraPropertyDetails";
 import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import ListContainer from "../../../redux/containers/components/ListContainer";
-import { Redirect } from "react-router-dom";
-import ROUTES from "../../../utils/routes";
 
 export default function PropertyDetails({
   id,
@@ -17,7 +15,6 @@ export default function PropertyDetails({
 }) {
   if (property === null || property._id !== id) {
     fetchPropertyDetails(id);
-    /* return <Redirect to={ROUTES.LISTING + "/" + id} />; */
   }
 
   return (

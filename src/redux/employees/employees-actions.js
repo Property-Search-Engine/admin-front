@@ -1,12 +1,8 @@
 import EmployeesTypes from "./employees-types";
 import { auth } from "../../firebase/firebase";
 import { finalEndpoints } from "../../utils/endpoints";
-import { createFormData, authHeader } from "../../utils/helpers";
+import { authHeader } from "../../utils/helpers";
 
-/* export const resetStoreAndLogOut = () => ({
-  type: EmployeesTypes.RESET_STORE_AND_LOG_OUT,
-});
- */
 export const createEmployeeRequest = () => ({
   type: EmployeesTypes.CREATE_EMPLOYEE_REQUEST,
 });

@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 
-/* import { currentUserStateSelector } from "../../user/user-selectors"; */
 import { propertyDetails } from "../../properties/properties-actions";
 
 import PropertyDetails from "../../../components/pages/PropertyDetails/PropertyDetails";
