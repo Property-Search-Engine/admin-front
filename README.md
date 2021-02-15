@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+<p align="center" >
+  <img src="https://github.com/Property-Search-Engine/client-facing-server/blob/main/docs/images/logo.png" title="Casame" width="200">
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <a href="./LICENSE" target="_blank">
+    <img alt="MIT License" src="https://img.shields.io/github/license/Property-Search-Engine/admin-front" />
+  </a>
+  <img alt="pr" src="https://img.shields.io/github/issues-pr/Property-Search-Engine/admin-front" />
+  <img alt="issues" src="https://img.shields.io/github/issues/Property-Search-Engine/admin-front" />
+  <img alt="discord-chat" src="https://img.shields.io/discord/803927161806520340?logo=discord" />
+</p>
 
-## Available Scripts
+<h1 align="center">CasaMe: Find the house or office of your dreams</h1>
 
-In the project directory, you can run:
+> CasaMe React admin dashboard
 
-### `npm start`
+## Configure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Before running the project, first copy the .env.save file:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+$ cp .env.example .env
+```
 
-### `npm test`
+Then setup all the needed env variables and everything should be up to go!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Run
 
-### `npm run build`
+```bash
+$ npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Build
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+$ npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 👤 Contributors ✨
 
-### `npm run eject`
+<table>
+<tr>
+<td align="center"><a href="https://github.com/xlerida"><img src="https://avatars.githubusercontent.com/u/65079206?s=400&u=a9bacbfb847cda01818703c3f26a2d59f9d470f5&v=4" width="100" alt=""/><br /><sub><b>Alex Lerida</b></sub></a></td>
+<td align="center"><a href="https://github.com/RobertoLlopis"><img src="https://avatars.githubusercontent.com/u/55133056?s=400&u=8da822532d35e3e49812f1e118b2568462352856&v=4" width="100" alt=""/><br /><sub><b>Roberto Llopis</b></sub></a></td>
+<td align="center"><a href="https://github.com/CrisGarciaM"><img src="https://avatars.githubusercontent.com/u/60959942?s=400&u=9e4ceb1bb4863f356c8099d702765346aaaf5690&v=4" width="100" alt=""/><br /><sub><b>Cris Garcia</b></sub></a></td>
+<td align="center"><a href="https://github.com/suki-abkari"><img src="https://avatars.githubusercontent.com/u/69718320?s=400&v=4" width="100" alt=""/><br /><sub><b>Suki Abkari</b></sub></a></td>
+<td align="center"><a href="https://github.com/JasterV"><img src="https://avatars3.githubusercontent.com/u/49537445?v=4" width="100" alt=""/><br /><sub><b>Victor Martínez</b></sub></a></td>
+<td align="center"><a href="https://github.com/devmxhv"><img src="https://avatars.githubusercontent.com/u/18093090?s=400&u=f1be9a47c65f930f7cb6948fe3a606fdac42c197&v=4" width="100" alt=""/><br /><sub><b>devmxhv</b></sub></a></td>
+<td align="center"><a href="https://github.com/Damantino"><img src="https://avatars.githubusercontent.com/u/50982542?s=400&u=94fbe1218e4fb44f5443848c1a586a087dfc773f&v=4" width="100" alt=""/><br /><sub><b>Daniel García</b></sub></a></td>
+</tr>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+</table>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Show your support
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Give a ⭐️ if this project helped you!
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
